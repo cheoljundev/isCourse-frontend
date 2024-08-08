@@ -1,10 +1,11 @@
 import './App.css'
+import Header from "./components/Header.jsx";
 
 function App() {
 
   return (
     <>
-      <button className="btn">daisyUI Button</button>
+      <Header/>
     </>
   )
 }
