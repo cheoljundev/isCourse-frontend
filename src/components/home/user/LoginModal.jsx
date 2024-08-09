@@ -35,7 +35,7 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
         {/*  <span>아이디 및 비밀번호가 맞지 않습니다.</span>*/}
         {/*</div>*/}
         <div className="mb-4">
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input border-solid input-bordered flex items-center gap-2 mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -46,7 +46,7 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
             </svg>
             <input type="text" className="grow" placeholder="Id"/>
           </label>
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input border-solid input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"

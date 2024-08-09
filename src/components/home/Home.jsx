@@ -6,7 +6,6 @@ import LoginModal from "./user/LoginModal.jsx";
 export default function Home({modal}) {
   return (
     <div className="px-3">
-      <LoginModal ref={modal}/>
       <DealSection/>
       <CourseRecommendationSection/>
       <UserCourseSection/>
