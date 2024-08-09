@@ -61,8 +61,8 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
           </label>
         </div>
         <div className="flex flex-col gap-y-3 items-center">
-          <button className="btn btn-wide">로그인</button>
-          <button className="btn btn-wide btn-ghost">회원가입</button>
+          <button className="btn btn-wide btn-primary">로그인</button>
+          <button className="btn btn-wide btn-outline">회원가입</button>
         </div>
       </div>
     </dialog>,

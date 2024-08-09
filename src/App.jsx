@@ -12,10 +12,10 @@ function App() {
   return (
     <div className="pb-16 lg:pb-0">
       <Header modal={modal} />
-      {/*<Home modal={modal}/>*/}
+      <Home modal={modal}/>
       {/*<SignupTerms/>*/}
       {/*<SignupForm/>*/}
-      <SignupComplete/>
+      {/*<SignupComplete/>*/}
       <Footer modal={modal}/>
     </div>
   )
