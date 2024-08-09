@@ -1,7 +1,7 @@
 import logoImage from "../../assets/logo.png";
 export default function Header() {
   return (
-    <header>
+    <header className="mb-4">
       <nav className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
