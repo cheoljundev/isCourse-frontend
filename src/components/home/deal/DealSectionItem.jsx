@@ -1,4 +1,4 @@
-export default function DealItem({deal}) {
+export default function DealSectionItem({deal}) {
   return <div className="flex gap-x-4 mb-4">
     <img className="mask mask-squircle flex-shrink-0" src="https://via.placeholder.com/100" alt="딜 이미지"/>
     <div className="flex flex-col justify-center">

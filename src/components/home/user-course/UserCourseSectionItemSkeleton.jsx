@@ -1,4 +1,4 @@
-export default function DealSkeleton() {
+export default function UserCourseSectionItemSkeleton() {
   return <>
     <div className="flex gap-x-4 mb-4">
       <div className="skeleton h-32 w-32 flex-shrink-0"></div>
