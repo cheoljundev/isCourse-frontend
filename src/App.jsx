@@ -4,6 +4,7 @@ import Footer from "./components/common/Footer.jsx";
 import Home from "./components/home/Home.jsx";
 import {useRef} from "react";
 import SignupTerms from "./components/signup/SignupTerms.jsx";
+import SignupForm from "./components/signup/SignupForm.jsx";
 
 function App() {
   const modal = useRef();
@@ -11,7 +12,8 @@ function App() {
     <div className="pb-16 lg:pb-0">
       <Header modal={modal} />
       {/*<Home modal={modal}/>*/}
-      <SignupTerms/>
+      {/*<SignupTerms/>*/}
+      <SignupForm/>
       <Footer modal={modal}/>
     </div>
   )
