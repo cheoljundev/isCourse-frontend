@@ -1,4 +1,4 @@
-export default function RecommendCourse() {
+export default function CourseRecommendationSection() {
   return (
     <section className="text-center mb-8">
       <h2 className="text-2xl font-bold mb-4">맞춤 코스 추천</h2>
