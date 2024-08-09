@@ -2,14 +2,15 @@ import './App.css'
 import Header from "./components/common/Header.jsx";
 import Footer from "./components/common/Footer.jsx";
 import Home from "./components/home/Home.jsx";
+import {useRef} from "react";
 
 function App() {
-
+  const modal = useRef();
   return (
     <div className="pb-16 lg:pb-0">
-      <Header/>
-      <Home/>
-      <Footer/>
+      <Header modal={modal} />
+      <Home modal={modal}/>
+      <Footer modal={modal}/>
     </div>
   )
 }

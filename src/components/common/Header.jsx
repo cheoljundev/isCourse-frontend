@@ -1,5 +1,5 @@
 import logoImage from "../../assets/logo.png";
-export default function Header() {
+export default function Header({modal}) {
   return (
     <header className="mb-4">
       <nav className="navbar bg-base-100">
@@ -35,7 +35,7 @@ export default function Header() {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">로그인</a>
+          <a className="btn" onClick={ () => modal.current.open() }>로그인</a>
         </div>
       </nav>
     </header>

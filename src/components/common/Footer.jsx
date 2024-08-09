@@ -1,6 +1,6 @@
 import {BoxArrowInLeft, Crosshair2, GeoAltFill, HouseFill} from "react-bootstrap-icons";
 
-export default function Footer() {
+export default function Footer({modal}) {
   return (
     <footer className="lg:hidden">
       <nav className="btm-nav">
@@ -16,7 +16,7 @@ export default function Footer() {
           <Crosshair2/>
           <span className="text-sm">내주변</span>
         </button>
-        <button className="text-xl">
+        <button onClick={()=>modal.current.open()} className="text-xl">
           <BoxArrowInLeft/>
           <span className="text-sm">로그인</span>
         </button>
