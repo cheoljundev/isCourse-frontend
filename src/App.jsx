@@ -8,6 +8,7 @@ import SignupForm from "./components/signup/SignupForm.jsx";
 import SignupComplete from "./components/signup/SignupComplete.jsx";
 import DealDetail from "./components/deal/DealDetail.jsx";
 import LoginModal from "./components/home/user/LoginModal.jsx";
+import UserCourseList from "./components/user-course/UserCourseList.jsx";
 
 function App() {
   const modal = useRef();
@@ -21,11 +22,12 @@ function App() {
     <div className="pb-16 lg:pb-0">
       <LoginModal ref={modal}/>
       <Header modal={modal} />
-      <Home modal={modal}/>
+      {/*<Home modal={modal}/>*/}
       {/*<SignupTerms/>*/}
       {/*<SignupForm/>*/}
       {/*<SignupComplete/>*/}
       {/*<DealDetail/>*/}
+      <UserCourseList/>
       <Footer modal={modal}/>
     </div>
   )
