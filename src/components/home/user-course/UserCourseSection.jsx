@@ -7,7 +7,10 @@ export default function UserCourseSection() {
         <h2 className="text-xl font-semibold">유저 추천 코스</h2>
         <a href="">더보기</a>
       </header>
-      <UserCourseSectionItemSkeleton/>
+      {/*<UserCourseSectionItemSkeleton/>*/}
+      <UserCourseSectionItem/>
+      <UserCourseSectionItem/>
+      <UserCourseSectionItem/>
     </section>
   );
 }

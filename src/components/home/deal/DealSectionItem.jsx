@@ -1,6 +1,6 @@
 export default function DealSectionItem({deal}) {
   return <div className="flex gap-x-4 mb-4">
-    <img className="mask mask-squircle flex-shrink-0" src="https://via.placeholder.com/100" alt="딜 이미지"/>
+    <img className="mask mask-squircle flex-shrink-0" src="https://picsum.photos/100" alt="딜 이미지"/>
     <div className="flex flex-col justify-center">
       <small className="font-normal text-sm text-gray-500">Station</small>
       <h3 className="font-semibold text-lg">title</h3>

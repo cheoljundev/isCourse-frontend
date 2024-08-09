@@ -54,16 +54,16 @@ export default function SignupForm() {
           <option value="0000">관심사</option>
         </select>
         <div className="flex flex-wrap gap-2">
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
-          <div className="badge badge-neutral">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
+          <div className="badge badge-outline border-solid">관심사</div>
         </div>
       </div>
       <button className="btn btn-wide btn-primary mx-auto block mb-4">회원가입</button>
