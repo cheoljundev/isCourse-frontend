@@ -1,4 +1,4 @@
-export default function UserCourseListBody() {
+export default function RecommendCourseListBody() {
   return (
     <>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 mb-4">
@@ -63,7 +63,6 @@ export default function UserCourseListBody() {
           </a>
         </li>
       </ul>
-      <button className="btn btn-sm btn-primary block ml-auto">코스 공유</button>
       <div className="join m-4 mx-auto flex justify-center">
         <button className="join-item btn btn-disabled">«</button>
         <button className="join-item btn">1</button>
