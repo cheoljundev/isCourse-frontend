@@ -10,9 +10,9 @@ export default function DealDetailBody({deal}) {
         navigation
         slidesPerView={1}
       >
-        <SwiperSlide><img src="https://picsum.photos/1000"/></SwiperSlide>
-        <SwiperSlide><img src="https://picsum.photos/1000"/></SwiperSlide>
-        <SwiperSlide><img src="https://picsum.photos/1000"/></SwiperSlide>
+        <SwiperSlide><img className="rounded-xl" src="https://picsum.photos/1000"/></SwiperSlide>
+        <SwiperSlide><img className="rounded-xl" src="https://picsum.photos/1000"/></SwiperSlide>
+        <SwiperSlide><img className="rounded-xl" src="https://picsum.photos/1000"/></SwiperSlide>
       </Swiper>
       <small className="text-lg mb-2">Station</small>
       <h2 className="text-xl mb-4 font-bold">Name</h2>

@@ -4,7 +4,7 @@ export default function UserCourseListBodySkeleton() {
       <div
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 mb-4">
         <a className="flex flex-col">
-          <img className="mask mask-squircle w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
+          <img className="rounded-xl w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
           <div className="mb-2 font-bold text-lg">코스이름</div>
           <div className="flex gap-2">
             <span className="text-sm">부천역</span>
@@ -12,7 +12,7 @@ export default function UserCourseListBodySkeleton() {
           </div>
         </a>
         <a className="flex flex-col">
-          <img className="mask mask-squircle w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
+          <img className="rounded-xl w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
           <div className="mb-2 font-bold text-lg">코스이름</div>
           <div className="flex gap-2">
             <span className="text-sm">부천역</span>
@@ -20,7 +20,7 @@ export default function UserCourseListBodySkeleton() {
           </div>
         </a>
         <a className="flex flex-col">
-          <img className="mask mask-squircle w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
+          <img className="rounded-xl w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
           <div className="mb-2 font-bold text-lg">코스이름</div>
           <div className="flex gap-2">
             <span className="text-sm">부천역</span>
@@ -28,7 +28,7 @@ export default function UserCourseListBodySkeleton() {
           </div>
         </a>
         <a className="flex flex-col">
-          <img className="mask mask-squircle w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
+          <img className="rounded-xl w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
           <div className="mb-2 font-bold text-lg">코스이름</div>
           <div className="flex gap-2">
             <span className="text-sm">부천역</span>
@@ -36,7 +36,7 @@ export default function UserCourseListBodySkeleton() {
           </div>
         </a>
         <a className="flex flex-col">
-          <img className="mask mask-squircle w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
+          <img className="rounded-xl w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
           <div className="mb-2 font-bold text-lg">코스이름</div>
           <div className="flex gap-2">
             <span className="text-sm">부천역</span>
@@ -44,7 +44,7 @@ export default function UserCourseListBodySkeleton() {
           </div>
         </a>
         <a className="flex flex-col">
-          <img className="mask mask-squircle w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
+          <img className="rounded-xl w-full mb-2" src="https://picsum.photos/250" alt="코스 이미지"/>
           <div className="mb-2 font-bold text-lg">코스이름</div>
           <div className="flex gap-2">
             <span className="text-sm">부천역</span>

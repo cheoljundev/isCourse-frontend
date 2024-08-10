@@ -1,6 +1,6 @@
 export default function UserCourseSectionItem({course}) {
   return <div className="flex gap-x-4 mb-4">
-    <img className="mask mask-squircle flex-shrink-0 self-start" src="https://picsum.photos/100" alt="유저코스 이미지"/>
+    <img className="rounded-xl flex-shrink-0 self-start" src="https://picsum.photos/100" alt="유저코스 이미지"/>
     <div className="flex flex-col justify-center w-80">
       <small className="font-normal text-sm text-gray-500">Station</small>
       <h3 className="font-semibold text-lg">title</h3>

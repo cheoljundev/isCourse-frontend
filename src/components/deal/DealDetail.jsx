@@ -7,8 +7,8 @@ export default function DealDetail() {
   return (
     <section className="px-4">
       <h2 className="text-xl font-semibold mb-4">오늘의 딜</h2>
-      <DealDetailBodySkeleton/>
-      {/*<DealDetailBody/>*/}
+      {/*<DealDetailBodySkeleton/>*/}
+      <DealDetailBody/>
     </section>
   )
 }
