@@ -28,8 +28,8 @@ function App() {
       {/*<SignupForm/>*/}
       {/*<SignupComplete/>*/}
       {/*<DealDetail/>*/}
-      {/*<UserCourseList/>*/}
-      <UserCourseDetail modal={modal}/>
+      <UserCourseList/>
+      {/*<UserCourseDetail modal={modal}/>*/}
       <Footer modal={modal}/>
     </div>
   )
