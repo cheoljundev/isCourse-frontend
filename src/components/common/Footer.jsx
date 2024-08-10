@@ -3,7 +3,7 @@ import {BoxArrowInLeft, Crosshair2, GeoAltFill, HouseFill} from "react-bootstrap
 export default function Footer({modal}) {
   return (
     <footer className="lg:hidden">
-      <nav className="btm-nav">
+      <nav className="btm-nav z-10">
         <button className="active text-xl">
           <HouseFill/>
           <span className="text-sm">홈</span>

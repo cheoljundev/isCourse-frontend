@@ -1,4 +1,4 @@
-import CourseListBodySkeleton from "../common/CourseListBodySkeleton.jsx";
+import CourseListBodySkeleton from "../course/CourseListBodySkeleton.jsx";
 import UserCourseListBody from "./UserCourseListBody.jsx";
 
 export default function UserCourseList() {
