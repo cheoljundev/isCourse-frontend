@@ -12,6 +12,7 @@ import UserCourseList from "./components/user-course/UserCourseList.jsx";
 import UserCourseDetail from "./components/user-course/UserCourseDetail.jsx";
 import RecommendCourseList from "./components/recommend-course/RecommendCourseList.jsx";
 import RecommendCourseDetail from "./components/recommend-course/RecommendCourseDetail.jsx";
+import CourseShare from "./components/course/CourseShare.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -31,9 +32,10 @@ function App() {
       {/*<SignupComplete/>*/}
       {/*<DealDetail/>*/}
       {/*<UserCourseList/>*/}
-      <UserCourseDetail/>
+      {/*<UserCourseDetail/>*/}
       {/*<RecommendCourseList/>*/}
       {/*<RecommendCourseDetail/>*/}
+      <CourseShare/>
       <Footer modal={loginModalRef}/>
     </div>
   )
