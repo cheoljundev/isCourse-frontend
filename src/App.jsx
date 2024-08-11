@@ -14,7 +14,7 @@ import RecommendCourseList from "./components/recommend-course/RecommendCourseLi
 import RecommendCourseDetail from "./components/recommend-course/RecommendCourseDetail.jsx";
 
 function App() {
-  const modal = useRef();
+  const loginModalRef = useRef();
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position)=>{
       console.log("mapX: " + position.coords.latitude)
@@ -23,18 +23,18 @@ function App() {
   }, []);
   return (
     <div className="pb-16 lg:pb-0">
-      <LoginModal ref={modal}/>
-      <Header modal={modal} />
+      <LoginModal ref={loginModalRef}/>
+      <Header modal={loginModalRef} />
       {/*<Home modal={modal}/>*/}
       {/*<SignupTerms/>*/}
       {/*<SignupForm/>*/}
       {/*<SignupComplete/>*/}
       {/*<DealDetail/>*/}
       {/*<UserCourseList/>*/}
-      {/*<UserCourseDetail modal={modal}/>*/}
+      <UserCourseDetail/>
       {/*<RecommendCourseList/>*/}
-      <RecommendCourseDetail modal={modal}/>
-      <Footer modal={modal}/>
+      {/*<RecommendCourseDetail/>*/}
+      <Footer modal={loginModalRef}/>
     </div>
   )
 }

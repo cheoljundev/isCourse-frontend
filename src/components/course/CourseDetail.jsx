@@ -64,7 +64,7 @@ export default function CourseDetail({modal}) {
           </ul>
         </div>
       </div>
-      <button onClick={() => modal.current.open()} className="btn btn-primary w-full fixed bottom-16 z-10">코스 가보기</button>
+      <button onClick={() => modal.current.open()} className="btn btn-primary w-full fixed bottom-16 lg:bottom-0 z-10">코스 가보기</button>
     </div>
   )
 }
