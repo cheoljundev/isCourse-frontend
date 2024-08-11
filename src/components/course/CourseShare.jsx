@@ -25,10 +25,19 @@ export default function CourseShare() {
                 <option value="tag2">태그2</option>
               </select>
             </label>
+            <label className="form-control w-full max-w-xs mb-2">
+              <div className="label">
+                <span className="label-text font-semibold">코스 시간</span>
+              </div>
+              <div className="flex gap-x-2">
+                <input type="number" placeholder="시간" className="input input-bordered w-16 max-w-xs"/>
+                <input type="number" placeholder="분" className="input input-bordered w-16 max-w-xs"/>
+              </div>
+            </label>
           </div>
         </div>
         <div className="card bg-base-100 w-full shadow-xl mb-6">
-          <div className="card-body">
+        <div className="card-body">
             <h3 className="card-title">코스 소개</h3>
             <p className="text-red-500">최소 200자 이상 작성</p>
             <textarea className="textarea textarea-sm textarea-bordered" name="" id="" cols="30" rows="4"
