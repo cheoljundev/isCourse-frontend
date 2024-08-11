@@ -36,8 +36,8 @@ function App() {
       {/*<UserCourseDetail/>*/}
       {/*<RecommendCourseList/>*/}
       {/*<RecommendCourseDetail/>*/}
-      {/*<CourseShare/>*/}
-      <MyPage/>
+      <CourseShare/>
+      {/*<MyPage/>*/}
       <Footer modal={loginModalRef}/>
     </div>
   )

@@ -80,7 +80,7 @@ export default function CourseShare() {
           </div>
         </div>
       </section>
-        <div className="join w-full fixed bottom-16">
+        <div className="join w-full fixed bottom-16 lg:bottom-0">
           <button className="btn join-item flex-1">취소</button>
           <button className="btn btn-primary join-item flex-1">등록</button>
         </div>
