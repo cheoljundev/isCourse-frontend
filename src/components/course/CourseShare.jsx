@@ -64,6 +64,7 @@ export default function CourseShare() {
               </div>
               <div className="card shadow-xl bg-gray-50 w-full">
                 <div className="card-body">
+                  <PlaceItem type={"x"}/>
                 </div>
               </div>
             </label>
