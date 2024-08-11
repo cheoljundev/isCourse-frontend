@@ -19,11 +19,15 @@ export default function CourseShare() {
               <div className="label">
                 <span className="label-text font-semibold">코스 태그</span>
               </div>
-              <select className="select select-bordered w-full max-w-xs" defaultValue="태그 선택">
+              <select className="select select-bordered w-full max-w-xs mb-2" defaultValue="태그 선택">
                 <option disabled>태그 선택</option>
                 <option value="tag1">태그1</option>
                 <option value="tag2">태그2</option>
               </select>
+              <div className="flex flex-wrap gap-x-2">
+                <div className="badge badge-ghost">태그</div>
+                <div className="badge badge-ghost">태그</div>
+              </div>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
