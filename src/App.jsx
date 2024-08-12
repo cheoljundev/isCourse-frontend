@@ -41,11 +41,11 @@ function App() {
       {/*<UserCourseDetail/>*/}
       {/*<RecommendCourseList/>*/}
       {/*<RecommendCourseDetail/>*/}
-      {/*<CourseShare/>*/}
+      <CourseShare/>
       {/*<MyPage/>*/}
       {/*<EditUserInfo/>*/}
       {/*<CourseSavedList />*/}
-      <CourseSharedList/>
+      {/*<CourseSharedList/>*/}
       {/*<Footer modal={loginModalRef}/>*/}
     </div>
   )

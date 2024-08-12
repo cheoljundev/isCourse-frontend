@@ -53,7 +53,7 @@ export default function AdminHeader() {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
+            <li className="z-10">
               <details>
                 <summary>코스 관리</summary>
                 <ul className="p-2">
@@ -64,8 +64,8 @@ export default function AdminHeader() {
                 </ul>
               </details>
             </li>
-            <li><a>회원관리</a></li>
-            <li>
+            <li className="z-10"><a>회원관리</a></li>
+            <li className="z-10">
               <details>
                 <summary>딜관리</summary>
                 <ul className="p-2">
