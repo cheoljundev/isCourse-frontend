@@ -2,11 +2,11 @@ import PlaceItemSkeleton from "../course/PlaceItemSkeleton.jsx";
 import {X} from "react-bootstrap-icons";
 import PlaceItem from "../course/PlaceItem.jsx";
 
-export default function DealAdd() {
+export default function DealModify() {
   return (
     <div className="pb-12">
       <section className="px-4">
-        <h2 className="mb-2 font-bold text-lg">딜 등록하기</h2>
+        <h2 className="mb-2 font-bold text-lg">딜 수정하기</h2>
         <div className="card bg-base-100 w-full shadow-xl mb-6">
           <div className="card-body">
             <h3 className="card-title">딜 정보</h3>
@@ -86,7 +86,7 @@ export default function DealAdd() {
       </section>
       <div className="join w-full fixed bottom-0">
         <button className="btn join-item flex-1">취소</button>
-        <button className="btn btn-primary join-item flex-1">등록</button>
+        <button className="btn btn-primary join-item flex-1">수정</button>
       </div>
     </div>
   )
