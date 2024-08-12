@@ -22,6 +22,7 @@ import PlaceBring from "./components/admin/PlaceBring.jsx";
 import PlaceManage from "./components/admin/PlaceManage.jsx";
 import CourseAdd from "./components/admin/CourseAdd.jsx";
 import CourseManage from "./components/admin/CourseManage.jsx";
+import CourseModify from "./components/admin/CourseModify.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -54,7 +55,8 @@ function App() {
       {/*<PlaceBring/>*/}
       {/*<PlaceManage/>*/}
       {/*<CourseAdd/>*/}
-      <CourseManage/>
+      {/*<CourseManage/>*/}
+      <CourseModify/>
     </div>
   )
 }
