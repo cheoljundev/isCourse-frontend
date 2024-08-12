@@ -17,6 +17,7 @@ import MyPage from "./components/user/MyPage.jsx";
 import EditUserInfo from "./components/user/EditUserInfo.jsx";
 import CourseSavedList from "./components/user/CourseSavedList.jsx";
 import CourseSharedList from "./components/user/CourseSharedList.jsx";
+import AdminHeader from "./components/admin/AdminHeader.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -29,7 +30,8 @@ function App() {
   return (
     <div className="pb-16 lg:pb-0">
       <LoginModal ref={loginModalRef}/>
-      <Header modal={loginModalRef} />
+      {/*<Header modal={loginModalRef} />*/}
+      <AdminHeader/>
       {/*<Home modal={modal}/>*/}
       {/*<SignupTerms/>*/}
       {/*<SignupForm/>*/}
@@ -44,7 +46,7 @@ function App() {
       {/*<EditUserInfo/>*/}
       {/*<CourseSavedList />*/}
       <CourseSharedList/>
-      <Footer modal={loginModalRef}/>
+      {/*<Footer modal={loginModalRef}/>*/}
     </div>
   )
 }
