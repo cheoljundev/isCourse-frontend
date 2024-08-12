@@ -89,9 +89,10 @@ export default function CourseShare() {
             </label>
             <label className="form-control w-full">
               <div className="label">
+                <span className="label-text font-semibold">선택된 장소</span>
               </div>
               <div className="card shadow-xl bg-gray-50 w-full">
-                <div className="card-body">
+              <div className="card-body">
                   <PlaceItem type={"x"}/>
                 </div>
               </div>

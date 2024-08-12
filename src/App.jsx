@@ -18,6 +18,7 @@ import EditUserInfo from "./components/user/EditUserInfo.jsx";
 import CourseSavedList from "./components/user/CourseSavedList.jsx";
 import CourseSharedList from "./components/user/CourseSharedList.jsx";
 import AdminHeader from "./components/admin/AdminHeader.jsx";
+import PlaceBring from "./components/admin/PlaceBring.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -41,12 +42,13 @@ function App() {
       {/*<UserCourseDetail/>*/}
       {/*<RecommendCourseList/>*/}
       {/*<RecommendCourseDetail/>*/}
-      <CourseShare/>
+      {/*<CourseShare/>*/}
       {/*<MyPage/>*/}
       {/*<EditUserInfo/>*/}
       {/*<CourseSavedList />*/}
       {/*<CourseSharedList/>*/}
       {/*<Footer modal={loginModalRef}/>*/}
+      <PlaceBring/>
     </div>
   )
 }
