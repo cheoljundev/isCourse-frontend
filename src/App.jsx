@@ -3,17 +3,17 @@ import Header from "./components/common/Header.jsx";
 import Footer from "./components/common/Footer.jsx";
 import Home from "./components/home/Home.jsx";
 import {useEffect, useRef} from "react";
-import SignupTerms from "./components/signup/SignupTerms.jsx";
-import SignupForm from "./components/signup/SignupForm.jsx";
-import SignupComplete from "./components/signup/SignupComplete.jsx";
+import SignupTerms from "./components/user/SignupTerms.jsx";
+import SignupForm from "./components/user/SignupForm.jsx";
+import SignupComplete from "./components/user/SignupComplete.jsx";
 import DealDetail from "./components/deal/DealDetail.jsx";
-import LoginModal from "./components/home/user/LoginModal.jsx";
+import LoginModal from "./components/user/LoginModal.jsx";
 import UserCourseList from "./components/user-course/UserCourseList.jsx";
 import UserCourseDetail from "./components/user-course/UserCourseDetail.jsx";
 import RecommendCourseList from "./components/recommend-course/RecommendCourseList.jsx";
 import RecommendCourseDetail from "./components/recommend-course/RecommendCourseDetail.jsx";
 import CourseShare from "./components/course/CourseShare.jsx";
-import MyPage from "./components/home/user/MyPage.jsx";
+import MyPage from "./components/user/MyPage.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -29,14 +29,14 @@ function App() {
       <Header modal={loginModalRef} />
       {/*<Home modal={modal}/>*/}
       {/*<SignupTerms/>*/}
-      {/*<SignupForm/>*/}
+      <SignupForm/>
       {/*<SignupComplete/>*/}
       {/*<DealDetail/>*/}
       {/*<UserCourseList/>*/}
       {/*<UserCourseDetail/>*/}
       {/*<RecommendCourseList/>*/}
       {/*<RecommendCourseDetail/>*/}
-      <CourseShare/>
+      {/*<CourseShare/>*/}
       {/*<MyPage/>*/}
       <Footer modal={loginModalRef}/>
     </div>
