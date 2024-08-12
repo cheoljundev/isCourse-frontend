@@ -20,6 +20,7 @@ import CourseSharedList from "./components/user/CourseSharedList.jsx";
 import AdminHeader from "./components/admin/AdminHeader.jsx";
 import PlaceBring from "./components/admin/PlaceBring.jsx";
 import PlaceManage from "./components/admin/PlaceManage.jsx";
+import CourseAdd from "./components/admin/CourseAdd.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -50,7 +51,8 @@ function App() {
       {/*<CourseSharedList/>*/}
       {/*<Footer modal={loginModalRef}/>*/}
       {/*<PlaceBring/>*/}
-      <PlaceManage/>
+      {/*<PlaceManage/>*/}
+      <CourseAdd/>
     </div>
   )
 }
