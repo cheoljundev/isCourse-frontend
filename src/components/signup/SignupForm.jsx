@@ -1,3 +1,5 @@
+import {X} from "react-bootstrap-icons";
+
 export default function SignupForm() {
   return (
     <section className="px-4">
@@ -54,16 +56,18 @@ export default function SignupForm() {
           <option value="0000">관심사</option>
         </select>
         <div className="flex flex-wrap gap-2">
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
-          <div className="badge badge-outline border-solid">관심사</div>
+          <button className="badge active:scale-95 badge-ghost">
+            <X className="text-lg"/>
+            <span>관심사</span>
+          </button>
+          <button className="badge active:scale-95 badge-ghost">
+            <X className="text-lg"/>
+            <span>관심사</span>
+          </button>
+          <button className="badge active:scale-95 badge-ghost">
+            <X className="text-lg"/>
+            <span>관심사</span>
+          </button>
         </div>
       </div>
       <button className="btn btn-wide btn-primary mx-auto block mb-4">회원가입</button>

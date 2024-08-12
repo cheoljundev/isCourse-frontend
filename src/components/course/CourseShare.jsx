@@ -1,5 +1,6 @@
 import PlaceItem from "./PlaceItem.jsx";
 import PlaceItemSkeleton from "./PlaceItemSkeleton.jsx";
+import {X} from "react-bootstrap-icons";
 
 export default function CourseShare() {
   return (
@@ -24,9 +25,23 @@ export default function CourseShare() {
                 <option value="tag1">태그1</option>
                 <option value="tag2">태그2</option>
               </select>
-              <div className="flex flex-wrap gap-x-2">
-                <div className="badge badge-ghost">태그</div>
-                <div className="badge badge-ghost">태그</div>
+              <div className="flex flex-wrap gap-2">
+                <button className="badge active:scale-95 badge-ghost">
+                  <X className="text-lg"/>
+                  <span>관심사</span>
+                </button>
+                <button className="badge active:scale-95 badge-ghost">
+                  <X className="text-lg"/>
+                  <span>관심사</span>
+                </button>
+                <button className="badge active:scale-95 badge-ghost">
+                  <X className="text-lg"/>
+                  <span>관심사</span>
+                </button>
+                <button className="badge active:scale-95 badge-ghost">
+                  <X className="text-lg"/>
+                  <span>관심사</span>
+                </button>
               </div>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
@@ -41,7 +56,7 @@ export default function CourseShare() {
           </div>
         </div>
         <div className="card bg-base-100 w-full shadow-xl mb-6">
-        <div className="card-body">
+          <div className="card-body">
             <h3 className="card-title">코스 소개</h3>
             <p className="text-red-500">최소 200자 이상 작성</p>
             <textarea className="textarea textarea-sm textarea-bordered" name="" id="" cols="30" rows="4"
