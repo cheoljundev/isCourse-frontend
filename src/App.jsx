@@ -23,6 +23,7 @@ import PlaceManage from "./components/admin/PlaceManage.jsx";
 import CourseAdd from "./components/admin/CourseAdd.jsx";
 import CourseManage from "./components/admin/CourseManage.jsx";
 import CourseModify from "./components/admin/CourseModify.jsx";
+import DealAdd from "./components/admin/DealAdd.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -56,7 +57,8 @@ function App() {
       {/*<PlaceManage/>*/}
       {/*<CourseAdd/>*/}
       {/*<CourseManage/>*/}
-      <CourseModify/>
+      {/*<CourseModify/>*/}
+      <DealAdd/>
     </div>
   )
 }
