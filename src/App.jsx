@@ -21,6 +21,7 @@ import AdminHeader from "./components/admin/AdminHeader.jsx";
 import PlaceBring from "./components/admin/PlaceBring.jsx";
 import PlaceManage from "./components/admin/PlaceManage.jsx";
 import CourseAdd from "./components/admin/CourseAdd.jsx";
+import CourseManage from "./components/admin/CourseManage.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -52,7 +53,8 @@ function App() {
       {/*<Footer modal={loginModalRef}/>*/}
       {/*<PlaceBring/>*/}
       {/*<PlaceManage/>*/}
-      <CourseAdd/>
+      {/*<CourseAdd/>*/}
+      <CourseManage/>
     </div>
   )
 }
