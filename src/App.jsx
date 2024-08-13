@@ -27,6 +27,7 @@ import DealAdd from "./components/admin/DealAdd.jsx";
 import DealManage from "./components/admin/DealManage.jsx";
 import DealModify from "./components/admin/DealModify.jsx";
 import DealSalesManage from "./components/admin/DealSalesManage.jsx";
+import MemberManage from "./components/admin/MemberManage.jsx";
 
 function App() {
   const loginModalRef = useRef();
@@ -64,7 +65,8 @@ function App() {
       {/*<DealAdd/>*/}
       {/*<DealManage/>*/}
       {/*<DealModify/>*/}
-      <DealSalesManage/>
+      {/*<DealSalesManage/>*/}
+      <MemberManage/>
     </div>
   )
 }
