@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 export default function SignupComplete() {
   return (
     <section>
@@ -8,7 +10,7 @@ export default function SignupComplete() {
             <p className="py-6">
               맞춤형 데이트 코스 추천 서비스 isCourse에 가입하신 것을 환영합니다! 이제 여러분만의 특별한 데이트를 설계할 수 있는 모든 도구가 준비되었습니다.
             </p>
-            <button className="btn btn-primary">홈으로</button>
+            <Link to="/" className="btn btn-primary">홈으로</Link>
           </div>
         </div>
       </div>

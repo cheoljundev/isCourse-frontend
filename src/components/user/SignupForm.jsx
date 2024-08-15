@@ -1,6 +1,11 @@
 import {X} from "react-bootstrap-icons";
+import {useNavigate} from "react-router-dom";
 
 export default function SignupForm() {
+  const navigate = useNavigate();
+  function handleSignupComplete() {
+    navigate("/signup/complete");
+  }
   return (
     <section className="px-4">
       <h2 className="text-xl font-semibold mb-4">회원가입</h2>
@@ -70,7 +75,7 @@ export default function SignupForm() {
           </button>
         </div>
       </div>
-      <button className="btn btn-wide btn-primary mx-auto block mb-4">회원가입</button>
+      <button onClick={handleSignupComplete} className="btn btn-wide btn-primary mx-auto block mb-4">회원가입</button>
     </section>
   )
 }

@@ -1,5 +1,18 @@
 import logoImage from "../../assets/logo.png";
+import {Link, useNavigate} from "react-router-dom";
 export default function Header({modal}) {
+  const navigate = useNavigate();
+
+  function handleLoginForm() {
+    modal.current.open();
+  }
+  function handleToUserCourse() {
+    navigate("/user-course/list");
+  }
+  function handleToRecommendCourse() {
+    navigate("/recommend-course/list");
+  }
+
   return (
     <header className="mb-4">
       <nav className="navbar bg-base-100">
@@ -22,20 +35,20 @@ export default function Header({modal}) {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              <li><a>유저코스</a></li>
-              <li><a>내주변</a></li>
+              <li><button onClick={handleToUserCourse}>유저코스</button></li>
+              <li><button onClick={handleToRecommendCourse}>내주변</button></li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl"><img className="w-10" src={logoImage} alt="로고이미지"/> isCourse</a>
+          <Link to={"/"} className="btn btn-ghost text-xl"><img className="w-10" src={logoImage} alt="로고이미지"/> isCourse</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li><a>유저코스</a></li>
-            <li><a>내주변</a></li>
+            <li><button onClick={handleToUserCourse}>유저코스</button></li>
+            <li><button onClick={handleToRecommendCourse}>내주변</button></li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn" onClick={ () => modal.current.open() }>로그인</a>
+          <a className="btn" onClick={handleLoginForm}>로그인</a>
         </div>
       </nav>
     </header>

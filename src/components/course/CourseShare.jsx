@@ -1,8 +1,14 @@
 import PlaceItem from "./PlaceItem.jsx";
 import PlaceItemSkeleton from "./PlaceItemSkeleton.jsx";
 import {X} from "react-bootstrap-icons";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function CourseShare() {
+  const navigate = useNavigate();
+  function handleShareCourse() {
+    navigate("/user-course/list");
+  }
+
   return (
     <div className="pb-12">
       <section className="px-4">
@@ -101,8 +107,8 @@ export default function CourseShare() {
         </div>
       </section>
         <div className="join w-full fixed bottom-16 lg:bottom-0">
-          <button className="btn join-item flex-1">취소</button>
-          <button className="btn btn-primary join-item flex-1">등록</button>
+          <Link to="/user-course/list" className="btn join-item flex-1">취소</Link>
+          <button onClick={handleShareCourse} className="btn btn-primary join-item flex-1">등록</button>
         </div>
     </div>
   )

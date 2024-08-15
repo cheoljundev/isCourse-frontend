@@ -3,7 +3,7 @@ import CourseRecommendationSection from "./recommend-course/CourseRecommendation
 import UserCourseSection from "./user-course/UserCourseSection.jsx";
 import LoginModal from "../user/LoginModal.jsx";
 
-export default function Home({modal}) {
+export default function Home() {
   return (
     <div className="px-3">
       <DealSection/>

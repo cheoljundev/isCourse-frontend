@@ -1,7 +1,19 @@
 import {forwardRef, useImperativeHandle, useRef} from 'react';
 import {createPortal} from "react-dom";
+import {useNavigate} from "react-router-dom";
 const LoginModal = forwardRef(function LoginModal({}, ref) {
   const modal = useRef();
+  const navigate = useNavigate();
+
+  function handleSignup() {
+    modal.current.close();
+    navigate("/signup/terms");
+  }
+
+  function handleSignin() {
+    modal.current.close();
+    navigate("/");
+  }
 
   useImperativeHandle(ref, () => {
     return {
@@ -61,8 +73,8 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
           </label>
         </div>
         <div className="flex flex-col gap-y-3 items-center">
-          <button className="btn btn-wide btn-primary">로그인</button>
-          <button className="btn btn-wide btn-outline">회원가입</button>
+          <button className="btn btn-wide btn-primary" onClick={handleSignin}>로그인</button>
+          <button className="btn btn-wide btn-outline" onClick={handleSignup}>회원가입</button>
         </div>
       </div>
     </dialog>,
