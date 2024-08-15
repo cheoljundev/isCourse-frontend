@@ -1,6 +1,7 @@
 import PlaceItemSkeleton from "../course/PlaceItemSkeleton.jsx";
 import {X} from "react-bootstrap-icons";
 import PlaceItem from "../course/PlaceItem.jsx";
+import {Link} from "react-router-dom";
 
 export default function DealAdd() {
   return (
@@ -38,7 +39,7 @@ export default function DealAdd() {
               <div className="label">
                 <span className="label-text font-semibold">딜 이미지</span>
               </div>
-              <input type="file" className="file-input w-full max-w-xs mb-2" multiple="true"/>
+              <input type="file" className="file-input w-full max-w-xs mb-2" multiple={true}/>
               <div className="flex flex-wrap gap-2">
                 <img className="rounded-lg" src="https://picsum.photos/50" alt=""/>
                 <img className="rounded-lg" src="https://picsum.photos/50" alt=""/>
@@ -85,7 +86,7 @@ export default function DealAdd() {
         </div>
       </section>
       <div className="join w-full fixed bottom-0">
-        <button className="btn join-item flex-1">취소</button>
+        <Link to="/admin/deal/manage" className="btn join-item flex-1">취소</Link>
         <button className="btn btn-primary join-item flex-1">등록</button>
       </div>
     </div>

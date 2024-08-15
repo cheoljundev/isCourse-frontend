@@ -1,5 +1,5 @@
-import {X} from "react-bootstrap-icons";
 import PlaceItem from "../course/PlaceItem.jsx";
+import {Link} from "react-router-dom";
 
 export default function PlaceBring() {
   return (
@@ -109,7 +109,7 @@ export default function PlaceBring() {
         </div>
       </section>
       <div className="join w-full fixed bottom-0">
-        <button className="btn join-item flex-1">취소</button>
+        <Link to="/admin/course/place/manage" className="btn join-item flex-1">취소</Link>
         <button className="btn btn-primary join-item flex-1">등록</button>
       </div>
     </div>

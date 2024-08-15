@@ -1,5 +1,6 @@
 import logoImage from "../../assets/logo.png";
 import {GearFill} from "react-bootstrap-icons";
+import {Link} from "react-router-dom";
 
 export default function AdminHeader() {
   return (
@@ -28,28 +29,28 @@ export default function AdminHeader() {
                 <details>
                   <summary>코스 관리</summary>
                   <ul className="p-2">
-                    <li><a>장소 가져오기</a></li>
-                    <li><a>장소 관리하기</a></li>
-                    <li><a>코스 등록하기</a></li>
-                    <li><a>코스 관리하기</a></li>
+                    <li><Link to="/admin/course/place/bring">장소 가져오기</Link></li>
+                    <li><Link to="/admin/course/place/manage">장소 관리하기</Link></li>
+                    <li><Link to="/admin/course/add">코스 등록하기</Link></li>
+                    <li><Link to="/admin/course/manage">코스 관리하기</Link></li>
                   </ul>
                 </details>
               </li>
-              <li><a>회원 관리</a></li>
+              <li><Link to="/admin/member">회원 관리</Link></li>
               <li>
                 <details>
                   <summary>딜 관리</summary>
                   <ul className="p-2">
-                    <li><a>딜 등록하기</a></li>
-                    <li><a>딜 관리하기</a></li>
-                    <li><a>딜 판매관리</a></li>
+                    <li><Link to="/admin/deal/add">딜 등록하기</Link></li>
+                    <li><Link to="/admin/deal/manage">딜 관리하기</Link></li>
+                    <li><Link to="/admin/deal/sales-manage">딜 판매관리</Link></li>
                   </ul>
                 </details>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl"><img className="w-10" src={logoImage} alt="로고이미지"/> isCourse
-            Admin <GearFill/></a>
+          <Link to="/admin" className="btn btn-ghost text-xl"><img className="w-10" src={logoImage} alt="로고이미지"/> isCourse
+            Admin <GearFill/></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -57,21 +58,21 @@ export default function AdminHeader() {
               <details>
                 <summary>코스 관리</summary>
                 <ul className="p-2">
-                  <li><a className="text-nowrap">장소 가져오기</a></li>
-                  <li><a className="text-nowrap">장소 관리하기</a></li>
-                  <li><a className="text-nowrap">코스 등록하기</a></li>
-                  <li><a className="text-nowrap">코스 관리하기</a></li>
+                  <li><Link to="/admin/course/place/bring">장소 가져오기</Link></li>
+                  <li><Link to="/admin/course/place/manage">장소 관리하기</Link></li>
+                  <li><Link to="/admin/course/add">코스 등록하기</Link></li>
+                  <li><Link to="/admin/course/manage">코스 관리하기</Link></li>
                 </ul>
               </details>
             </li>
-            <li className="z-10"><a>회원관리</a></li>
+            <li><Link to="/admin/member">회원 관리</Link></li>
             <li className="z-10">
               <details>
                 <summary>딜관리</summary>
                 <ul className="p-2">
-                  <li><a className="text-nowrap">딜 등록하기</a></li>
-                  <li><a className="text-nowrap">딜 관리하기</a></li>
-                  <li><a className="text-nowrap">딜 판매관리</a></li>
+                  <li><Link to="/admin/deal/add">딜 등록하기</Link></li>
+                  <li><Link to="/admin/deal/manage">딜 관리하기</Link></li>
+                  <li><Link to="/admin/deal/sales-manage">딜 판매관리</Link></li>
                 </ul>
               </details>
             </li>
