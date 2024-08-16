@@ -9,7 +9,7 @@ import UserCourseDetail from "../user-course/UserCourseDetail.jsx";
 import RecommendCourseList from "../recommend-course/RecommendCourseList.jsx";
 import RecommendCourseDetail from "../recommend-course/RecommendCourseDetail.jsx";
 import CourseShare from "../course/CourseShare.jsx";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import AdminLayout from "../layout/AdminLayout.jsx";
 import DealManage from "../admin/DealManage.jsx";
 import DealAdd from "../admin/DealAdd.jsx";
@@ -35,7 +35,7 @@ export default function SiteRouter() {
       <AuthProvider>
         <Routes>
           {/*MainRoute*/}
-          <Route element={<MainLayout isShowModal={isShowModal} modal={loginModalRef}/>}>
+          <Route element={<MainLayout isShowModal={isShowModal} setIsShowModal={setIsShowModal} modal={loginModalRef}/>}>
             <Route path="/" element={<Home/>}/>
             <Route path="/signup">
               <Route path="terms" element={<SignupTerms/>}/>

@@ -4,10 +4,11 @@ import {Outlet} from "react-router-dom";
 import LoginModal from "../user/LoginModal.jsx";
 import {useEffect} from "react";
 
-export default function MainLayout({isShowModal, modal}) {
+export default function MainLayout({isShowModal, setIsShowModal, modal}) {
   useEffect(() => {
     if (isShowModal) {
       modal.current.open();
+      setIsShowModal(false);
     }
   }, [isShowModal]);
   return (

@@ -10,7 +10,7 @@ export default function PrivateRoute({setIsShowModal}) {
     if (!isSignedIn) {
       setIsShowModal(true); // 모달 열기
     }
-  }, [isSignedIn, setIsShowModal]);
+  }, []);
 
   if (!isSignedIn) {
     return <Navigate to="/" replace />;
