@@ -1,5 +1,7 @@
+import {Link} from "react-router-dom";
+
 export default function DealSectionItem({deal}) {
-  return <div className="flex gap-x-4 mb-4">
+  return <Link to={`/deal/${deal.id}`} className="flex gap-x-4 mb-4">
     <img className="rounded-xl flex-shrink-0 w-32 h-32 object-cover" src={`http://localhost:8080/image/deal/${deal.image.storedFileName}`} alt="딜 이미지"/>
     <div className="flex flex-col justify-center">
       <small className="font-normal text-sm text-gray-500">{deal.station}</small>
@@ -10,5 +12,5 @@ export default function DealSectionItem({deal}) {
         <div className="text-sm">{deal.price}</div>
       </div>
     </div>
-  </div>;
+  </Link>;
 }
