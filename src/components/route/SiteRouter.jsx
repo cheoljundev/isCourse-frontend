@@ -25,6 +25,7 @@ import CourseSavedList from "../user/CourseSavedList.jsx";
 import CourseSharedList from "../user/CourseSharedList.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import {AuthProvider} from "../../store/AuthContext.jsx";
+import DealDetail from "../deal/DealDetail.jsx";
 
 export default function SiteRouter() {
   const loginModalRef = useRef();
@@ -57,6 +58,7 @@ export default function SiteRouter() {
               <Route path="saved-course" element={<CourseSavedList/>}/>
               <Route path="share-course" element={<CourseSharedList/>}/>
             </Route>
+            <Route path="deal/:id" element={<DealDetail/>}/>
           </Route>
 
           {/*AdminRoute*/}
