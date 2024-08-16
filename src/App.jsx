@@ -1,7 +1,6 @@
 import './App.css'
-import {useEffect} from "react";
-import Router from "./components/route/Router.jsx";
-
+import {useEffect, useState} from "react";
+import SiteRouter from "./components/route/SiteRouter.jsx";
 function App() {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -11,9 +10,10 @@ function App() {
   }, []);
   return (
     <div className="pb-16 lg:pb-0">
-      <Router/>
+      <SiteRouter/>
     </div>
-  )
+)
 }
+
 
 export default App

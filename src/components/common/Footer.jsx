@@ -1,8 +1,10 @@
-import {BoxArrowInLeft, Crosshair2, GeoAltFill, HouseFill} from "react-bootstrap-icons";
+import {BoxArrowInLeft, BoxArrowInRight, Crosshair2, GeoAltFill, HouseFill} from "react-bootstrap-icons";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../store/AuthContext.jsx";
 
 export default function Footer({modal}) {
   const navigate = useNavigate();
+  const {isSignedIn, signout} = useAuth();
   function handleLoginForm() {
     modal.current.open();
   }
@@ -14,6 +16,10 @@ export default function Footer({modal}) {
   }
   function handleToRecommendCourse() {
     navigate("/recommend-course/list");
+  }
+  function handleLogout() {
+    signout();
+    navigate("/");
   }
 
   return (
@@ -31,10 +37,22 @@ export default function Footer({modal}) {
           <Crosshair2/>
           <span className="text-sm">내주변</span>
         </button>
-        <button onClick={handleLoginForm} className="text-xl">
-          <BoxArrowInLeft/>
-          <span className="text-sm">로그인</span>
-        </button>
+        {
+          !isSignedIn && (
+          <button onClick={handleLoginForm} className="text-xl">
+            <BoxArrowInLeft/>
+            <span className="text-sm">로그인</span>
+          </button>
+        )
+        }
+        {
+          isSignedIn && (
+            <button onClick={handleLogout} className="text-xl">
+              <BoxArrowInRight/>
+              <span className="text-sm">로그아웃</span>
+            </button>
+          )
+        }
       </nav>
     </footer>
   );

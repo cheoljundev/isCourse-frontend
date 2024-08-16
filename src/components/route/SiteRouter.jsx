@@ -9,7 +9,7 @@ import UserCourseDetail from "../user-course/UserCourseDetail.jsx";
 import RecommendCourseList from "../recommend-course/RecommendCourseList.jsx";
 import RecommendCourseDetail from "../recommend-course/RecommendCourseDetail.jsx";
 import CourseShare from "../course/CourseShare.jsx";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import AdminLayout from "../layout/AdminLayout.jsx";
 import DealManage from "../admin/DealManage.jsx";
 import DealAdd from "../admin/DealAdd.jsx";
@@ -19,16 +19,23 @@ import PlaceBring from "../admin/PlaceBring.jsx";
 import PlaceManage from "../admin/PlaceManage.jsx";
 import CourseAdd from "../admin/CourseAdd.jsx";
 import CourseManage from "../admin/CourseManage.jsx";
+import MyPage from "../user/MyPage.jsx";
+import EditUserInfo from "../user/EditUserInfo.jsx";
+import CourseSavedList from "../user/CourseSavedList.jsx";
+import CourseSharedList from "../user/CourseSharedList.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
+import {AuthProvider} from "../../store/AuthContext.jsx";
 
-export default function Router() {
+export default function SiteRouter() {
   const loginModalRef = useRef();
+  const [isShowModal, setIsShowModal] = useState(false);
 
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
           {/*MainRoute*/}
-          <Route element={<MainLayout modal={loginModalRef}/>}>
+          <Route element={<MainLayout isShowModal={isShowModal} modal={loginModalRef}/>}>
             <Route path="/" element={<Home/>}/>
             <Route path="/signup">
               <Route path="terms" element={<SignupTerms/>}/>
@@ -39,11 +46,17 @@ export default function Router() {
               <Route path="list" element={<UserCourseList/>}/>
               <Route path="detail/:id" element={<UserCourseDetail/>}/>
             </Route>
-            <Route path="/recommend-course">
+            <Route path="/recommend-course" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
               <Route path="list" element={<RecommendCourseList/>}/>
               <Route path="detail/:id" element={<RecommendCourseDetail/>}/>
             </Route>
             <Route path="/course-share" element={<CourseShare/>}/>
+            <Route path="/mypage" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
+              <Route path="" element={<MyPage/>}/>
+              <Route path="edit-info" element={<EditUserInfo/>}/>
+              <Route path="saved-course" element={<CourseSavedList/>}/>
+              <Route path="share-course" element={<CourseSharedList/>}/>
+            </Route>
           </Route>
 
           {/*AdminRoute*/}
@@ -65,7 +78,7 @@ export default function Router() {
             </Route>
           </Route>
         </Routes>
-      </BrowserRouter>
-    </>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }

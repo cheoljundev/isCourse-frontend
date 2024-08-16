@@ -1,7 +1,9 @@
 import logoImage from "../../assets/logo.png";
 import {Link, useNavigate} from "react-router-dom";
+import {useAuth} from "../../store/AuthContext.jsx";
 export default function Header({modal}) {
   const navigate = useNavigate();
+  const { isSignedIn } = useAuth();
 
   function handleLoginForm() {
     modal.current.open();
@@ -48,7 +50,8 @@ export default function Header({modal}) {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn" onClick={handleLoginForm}>로그인</a>
+          {isSignedIn && <Link to="/mypage" className="btn">마이페이지</Link>}
+          {!isSignedIn && <a className="btn" onClick={handleLoginForm}>로그인</a>}
         </div>
       </nav>
     </header>

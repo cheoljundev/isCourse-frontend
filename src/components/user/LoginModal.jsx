@@ -3,12 +3,14 @@ import {createPortal} from "react-dom";
 import {useNavigate} from "react-router-dom";
 import ky from "ky";
 import LoginAlert from "../user-course/LoginAlert.jsx";
+import {useAuth} from "../../store/AuthContext.jsx";
 const LoginModal = forwardRef(function LoginModal({}, ref) {
   const modal = useRef();
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const {signin} = useAuth();
 
   function handleSignup() {
     modal.current.close();
@@ -21,9 +23,9 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
     })
       .text()
       .then((data) => {
-        localStorage.setItem("token", data);
-        navigate("/");
+        signin(data);
         modal.current.close();
+        navigate("/");
       })
       .catch((error) => {
         console.error("Failed to signin", error);
