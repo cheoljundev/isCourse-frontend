@@ -35,23 +35,23 @@ export default function SiteRouter() {
       <AuthProvider>
         <Routes>
           {/*MainRoute*/}
-          <Route element={<MainLayout isShowModal={isShowModal} setIsShowModal={setIsShowModal} modal={loginModalRef}/>}>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/signup">
+          <Route path="/" element={<MainLayout isShowModal={isShowModal} setIsShowModal={setIsShowModal} modal={loginModalRef}/>}>
+            <Route path="" element={<Home/>}/>
+            <Route path="signup">
               <Route path="terms" element={<SignupTerms/>}/>
               <Route path="forms" element={<SignupForm/>}/>
               <Route path="complete" element={<SignupComplete/>}/>
             </Route>
-            <Route path="/user-course">
+            <Route path="user-course">
               <Route path="list" element={<UserCourseList/>}/>
               <Route path="detail/:id" element={<UserCourseDetail/>}/>
             </Route>
-            <Route path="/recommend-course" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
+            <Route path="recommend-course" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
               <Route path="list" element={<RecommendCourseList/>}/>
               <Route path="detail/:id" element={<RecommendCourseDetail/>}/>
             </Route>
-            <Route path="/course-share" element={<CourseShare/>}/>
-            <Route path="/mypage" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
+            <Route path="course-share" element={<CourseShare/>}/>
+            <Route path="mypage" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
               <Route path="" element={<MyPage/>}/>
               <Route path="edit-info" element={<EditUserInfo/>}/>
               <Route path="saved-course" element={<CourseSavedList/>}/>
@@ -60,9 +60,9 @@ export default function SiteRouter() {
           </Route>
 
           {/*AdminRoute*/}
-          <Route element={<AdminLayout/>}>
-            <Route path="/admin" element={<DealManage/>}/>
-            <Route path="/admin/course">
+          <Route path="/admin" element={<AdminLayout/>}>
+            <Route path="" element={<DealManage/>}/>
+            <Route path="course">
               <Route path="place">
                 <Route path="bring" element={<PlaceBring/>}/>
                 <Route path="manage" element={<PlaceManage/>}/>
@@ -70,8 +70,8 @@ export default function SiteRouter() {
               <Route path="add" element={<CourseAdd/>}/>
               <Route path="manage" element={<CourseManage/>}/>
             </Route>
-            <Route path="/admin/member" element={<MemberManage/>}/>
-            <Route path="/admin/deal">
+            <Route path="member" element={<MemberManage/>}/>
+            <Route path="deal">
               <Route path="add" element={<DealAdd/>}/>
               <Route path="manage" element={<DealManage/>}/>
               <Route path="sales-manage" element={<DealSalesManage/>}/>
