@@ -4,6 +4,8 @@ import ky from "ky";
 const AuthContext = createContext(
   {
     isSignedIn: false,
+    isManager: false,
+    isAdmin: false,
     signin: () => {},
     signout: () => {}
   }
@@ -13,6 +15,8 @@ const AuthContext = createContext(
 // Context Provider
 export function AuthProvider({ children }) {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isManager, setIsManager] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   useEffect(() => {
@@ -25,13 +29,35 @@ export function AuthProvider({ children }) {
       })
         .then(() => {
           setIsSignedIn(true);
+          // 매니저 체크
+          return ky.post('http://localhost:8080/api/manager/check-token', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+        })
+        .then(() => {
+          setIsManager(true);
         })
         .catch(() => {
-          setIsSignedIn(false);
-          localStorage.removeItem("token");
+          setIsManager(false);
         })
         .finally(() => {
-          setLoading(false); // 로딩 완료
+          // 관리자 체크
+          ky.post('http://localhost:8080/api/admin/check-token', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          })
+            .then(() => {
+              setIsAdmin(true);
+            })
+            .catch(() => {
+              setIsAdmin(false);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
         });
     } else {
       setLoading(false); // 토큰이 없는 경우에도 로딩 완료
@@ -54,7 +80,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{isSignedIn, signin, signout }}>
+    <AuthContext.Provider value={{isSignedIn, isManager, isAdmin, signin, signout }}>
       {children}
     </AuthContext.Provider>
   );

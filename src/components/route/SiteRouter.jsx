@@ -26,6 +26,8 @@ import CourseSharedList from "../user/CourseSharedList.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import {AuthProvider} from "../../store/AuthContext.jsx";
 import DealDetail from "../deal/DealDetail.jsx";
+import ManagerRoute from "./ManagerRoute.jsx";
+import AdminRoute from "./AdminRoute.jsx";
 
 export default function SiteRouter() {
   const loginModalRef = useRef();
@@ -62,7 +64,7 @@ export default function SiteRouter() {
           </Route>
 
           {/*AdminRoute*/}
-          <Route path="/admin" element={<AdminLayout/>}>
+          <Route path="/admin" element={<ManagerRoute setIsShowModal={setIsShowModal}/>}>
             <Route path="" element={<DealManage/>}/>
             <Route path="course">
               <Route path="place">
@@ -72,7 +74,9 @@ export default function SiteRouter() {
               <Route path="add" element={<CourseAdd/>}/>
               <Route path="manage" element={<CourseManage/>}/>
             </Route>
-            <Route path="member" element={<MemberManage/>}/>
+            <Route path="member" element={<AdminRoute setIsShowModal={setIsShowModal}/>}>
+              <Route path="" element={<MemberManage/>}/>
+            </Route>
             <Route path="deal">
               <Route path="add" element={<DealAdd/>}/>
               <Route path="manage" element={<DealManage/>}/>

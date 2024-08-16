@@ -1,8 +1,10 @@
 import logoImage from "../../assets/logo.png";
 import {GearFill} from "react-bootstrap-icons";
 import {Link} from "react-router-dom";
+import {useAuth} from "../../store/AuthContext.jsx";
 
 export default function AdminHeader() {
+  const {isAdmin} = useAuth();
   return (
     <header className="mb-4">
       <nav className="navbar bg-base-100">
@@ -36,7 +38,7 @@ export default function AdminHeader() {
                   </ul>
                 </details>
               </li>
-              <li><Link to="/admin/member">회원 관리</Link></li>
+              { isAdmin && <li><Link to="/admin/member">회원 관리</Link></li>}
               <li>
                 <details>
                   <summary>딜 관리</summary>
@@ -65,7 +67,7 @@ export default function AdminHeader() {
                 </ul>
               </details>
             </li>
-            <li><Link to="/admin/member">회원 관리</Link></li>
+            { isAdmin && <li><Link to="/admin/member">회원 관리</Link></li>}
             <li className="z-10">
               <details>
                 <summary>딜관리</summary>
