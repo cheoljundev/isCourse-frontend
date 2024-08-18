@@ -23,8 +23,8 @@ export default function DealDetail() {
       .catch((error) => {
         console.error("Failed to fetch deal", error);
         setLoading(false); // 실패 시에도 로딩 완료
-      }, [])
-  });
+      });
+  },[]);
   return (
     <section className="px-4">
       <h2 className="text-xl font-semibold mb-4">오늘의 딜</h2>

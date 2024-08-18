@@ -11,8 +11,8 @@ export default function DealDetailBody({deal}) {
         slidesPerView={1}
       >
         {
-          deal.images.map((image) => (
-            <SwiperSlide key={image.id}>
+          deal.images.map((image, i) => (
+            <SwiperSlide key={i}>
               <img className="rounded-xl" src={`http://localhost:8080/image/deal/${image.storedFileName}`}/>
             </SwiperSlide>
           ))
