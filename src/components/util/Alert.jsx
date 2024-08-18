@@ -1,4 +1,4 @@
-export default function SignupAlert({message, type}) {
+export default function Alert({message, type}) {
   let alertClass = "alert my-3"
   if (type === "error") {
     alertClass += " alert-error"

@@ -2,7 +2,7 @@ import {X} from "react-bootstrap-icons";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ky from "ky";
-import SignupAlert from "./SignupAlert.jsx";
+import Alert from "../util/Alert.jsx";
 
 export default function SignupForm() {
   const navigate = useNavigate();
@@ -29,13 +29,14 @@ export default function SignupForm() {
   }
   function handlePasswordInput(event) {
     setPassword(event.target.value);
+    validatePassword(confirmPassword, event);
   }
   function handleSelectInterest(event) {
     const selectedValue = event.target.value;
     const interest = interests.find(interest => interest.code === selectedValue);
     if (selectedValue === "0000") return;
     setSelectedInterests((prevSelectedInterests)=>{
-      return [...prevSelectedInterests, interest];
+      return [...new Set([...prevSelectedInterests, interest])];
     });
   }
   function handleRemoveInterest(interest) {
@@ -62,7 +63,11 @@ export default function SignupForm() {
   }
   function handleConfirmPasswordInput(event) {
     setConfirmPassword(event.target.value);
-    if (password !== event.target.value) {
+    validatePassword(password, event);
+  }
+
+  function validatePassword(anotherPassword, event) {
+    if (anotherPassword !== event.target.value) {
       setAlert({message: "비밀번호가 일치하지 않습니다.", show: true, type: "error"});
       setValidationPassword(false);
     } else {
@@ -70,12 +75,15 @@ export default function SignupForm() {
       setValidationPassword(true);
     }
   }
+
   const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
+
   const handleNicknameInput = (event) => {
     setNickname(event.target.value);
   }
+
   function handleSignupComplete() {
     if (
       !validationUsername ||
@@ -110,7 +118,7 @@ export default function SignupForm() {
   return (
     <section className="px-4">
       <h2 className="text-xl font-semibold mb-4">회원가입</h2>
-      {alert.show && <SignupAlert message={alert.message} type={alert.type}/>}
+      {alert.show && <Alert message={alert.message} type={alert.type}/>}
       <div className="mb-2">
         <div className="label">
           <span className="label-text font-semibold">아이디</span>
