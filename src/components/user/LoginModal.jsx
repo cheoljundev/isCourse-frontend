@@ -2,8 +2,8 @@ import {forwardRef, useImperativeHandle, useRef, useState} from 'react';
 import {createPortal} from "react-dom";
 import {useNavigate} from "react-router-dom";
 import ky from "ky";
-import LoginAlert from "../user-course/LoginAlert.jsx";
 import {useAuth} from "../../store/AuthContext.jsx";
+import Alert from "../util/Alert.jsx";
 const LoginModal = forwardRef(function LoginModal({}, ref) {
   const modal = useRef();
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
         </form>
         <h3 className="font-bold text-lg">로그인</h3>
         <p className="py-4">아이디와 비밀번호를 입력해 로그인해주세요.</p>
-        {error && <LoginAlert/>}
+        {error && <Alert message="아이디 또는 비밀번호가 일치하지 않습니다." type="error"/>}
         <div className="mb-4">
           <label className="input border-solid input-bordered flex items-center gap-2 mb-2">
             <svg
