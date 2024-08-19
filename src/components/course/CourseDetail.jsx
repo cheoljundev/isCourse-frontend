@@ -3,7 +3,7 @@ import {useModal} from "../../store/ModalContext.jsx";
 import ky from "ky";
 import {useState} from "react";
 
-export default function CourseDetail({course, id}) {
+export default function CourseDetail({course, id, setError}) {
   const {isSignedIn} = useAuth();
   const [likes , setLikes] = useState(course.likes);
   const {courseConfirmModal, loginModal} = useModal();
@@ -30,13 +30,39 @@ export default function CourseDetail({course, id}) {
       loginModal.current.open();
       return;
     }
-    courseConfirmModal.current.open();
+    ky.post(`http://localhost:8080/api/select-course/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+      .json()
+      .then(() => {
+        courseConfirmModal.current.open();
+      })
+      .catch((error) => {
+        if (error.response) {
+          error.response.json().then(err => {
+            console.error("Failed to select course", err);
+            setError({
+              status: true,
+              message: err.message // 서버에서 받은 message를 설정
+            });
+          });
+        } else {
+          console.error("Failed to select course", error);
+          setError({
+            status: true,
+            message: '알 수 없는 문제'
+          });
+        }
+        courseConfirmModal.current.open();
+      });
   }
 
   return (
     <div className="pb-16">
       <header className="relative mb-4">
-        <img className="object-cover w-full h-52 filter brightness-50" src="https://picsum.photos/1000" alt="코스 배경"/>
+        <img className="object-cover w-full h-52 filter brightness-50" src={course.image} alt="코스 배경"/>
         <div className="absolute m-auto left-0 top-0 p-4 h-full w-full text-white">
           <small className="text-lg font-light">{course.state}</small>
           <div className="flex justify-between items-center mb-2">
