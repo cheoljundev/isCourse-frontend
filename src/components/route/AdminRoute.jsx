@@ -3,15 +3,17 @@ import {Navigate, Outlet} from "react-router-dom";
 import {useEffect} from "react";
 import AdminHeader from "../admin/AdminHeader.jsx";
 import AdminLayout from "../layout/AdminLayout.jsx";
+import {useModal} from "../../store/ModalContext.jsx";
 
-export default function AdminRoute({setIsShowModal}) {
+export default function AdminRoute() {
   const { isAdmin, signout } = useAuth(); // 로그인 상태 가져오기
+  const { setIsShowLoginModal } = useModal(); // 모달 상태 가져오기
 
   // 로그인 상태에 따라 리디렉션 처리
   useEffect(() => {
     if (!isAdmin) {
       signout();
-      setIsShowModal(true); // 모달 열기
+      setIsShowLoginModal(true); // 모달 열기
     }
   }, []);
 

@@ -28,62 +28,64 @@ import {AuthProvider} from "../../store/AuthContext.jsx";
 import DealDetail from "../deal/DealDetail.jsx";
 import ManagerRoute from "./ManagerRoute.jsx";
 import AdminRoute from "./AdminRoute.jsx";
+import {ModalProvider} from "../../store/ModalContext.jsx";
 
 export default function SiteRouter() {
-  const loginModalRef = useRef();
-  const [isShowModal, setIsShowModal] = useState(false);
+  // const loginModalRef = useRef();
 
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          {/*MainRoute*/}
-          <Route path="/" element={<MainLayout isShowModal={isShowModal} setIsShowModal={setIsShowModal} modal={loginModalRef}/>}>
-            <Route path="" element={<Home/>}/>
-            <Route path="signup">
-              <Route path="terms" element={<SignupTerms/>}/>
-              <Route path="forms" element={<SignupForm/>}/>
-              <Route path="complete" element={<SignupComplete/>}/>
-            </Route>
-            <Route path="user-course">
-              <Route path="list" element={<UserCourseList/>}/>
-              <Route path="detail/:id" element={<UserCourseDetail/>}/>
-            </Route>
-            <Route path="recommend-course" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
-              <Route path="list" element={<RecommendCourseList/>}/>
-              <Route path="detail/:id" element={<RecommendCourseDetail/>}/>
-            </Route>
-            <Route path="course-share" element={<CourseShare/>}/>
-            <Route path="mypage" element={<PrivateRoute setIsShowModal={setIsShowModal}/>}>
-              <Route path="" element={<MyPage/>}/>
-              <Route path="edit-info" element={<EditUserInfo/>}/>
-              <Route path="saved-course" element={<CourseSavedList/>}/>
-              <Route path="share-course" element={<CourseSharedList/>}/>
-            </Route>
-            <Route path="deal/:id" element={<DealDetail/>}/>
-          </Route>
-
-          {/*AdminRoute*/}
-          <Route path="/admin" element={<ManagerRoute setIsShowModal={setIsShowModal}/>}>
-            <Route path="" element={<DealManage/>}/>
-            <Route path="course">
-              <Route path="place">
-                <Route path="bring" element={<PlaceBring/>}/>
-                <Route path="manage" element={<PlaceManage/>}/>
+        <ModalProvider>
+          <Routes>
+            {/*MainRoute*/}
+            <Route path="/" element={<MainLayout/>}>
+              <Route path="" element={<Home/>}/>
+              <Route path="signup">
+                <Route path="terms" element={<SignupTerms/>}/>
+                <Route path="forms" element={<SignupForm/>}/>
+                <Route path="complete" element={<SignupComplete/>}/>
               </Route>
-              <Route path="add" element={<CourseAdd/>}/>
-              <Route path="manage" element={<CourseManage/>}/>
+              <Route path="user-course">
+                <Route path="list" element={<UserCourseList/>}/>
+                <Route path="detail/:id" element={<UserCourseDetail/>}/>
+              </Route>
+              <Route path="recommend-course" element={<PrivateRoute/>}>
+                <Route path="list" element={<RecommendCourseList/>}/>
+                <Route path="detail/:id" element={<RecommendCourseDetail/>}/>
+              </Route>
+              <Route path="course-share" element={<CourseShare/>}/>
+              <Route path="mypage" element={<PrivateRoute/>}>
+                <Route path="" element={<MyPage/>}/>
+                <Route path="edit-info" element={<EditUserInfo/>}/>
+                <Route path="saved-course" element={<CourseSavedList/>}/>
+                <Route path="share-course" element={<CourseSharedList/>}/>
+              </Route>
+              <Route path="deal/:id" element={<DealDetail/>}/>
             </Route>
-            <Route path="member" element={<AdminRoute setIsShowModal={setIsShowModal}/>}>
-              <Route path="" element={<MemberManage/>}/>
+
+            {/*AdminRoute*/}
+            <Route path="/admin" element={<ManagerRoute/>}>
+              <Route path="" element={<DealManage/>}/>
+              <Route path="course">
+                <Route path="place">
+                  <Route path="bring" element={<PlaceBring/>}/>
+                  <Route path="manage" element={<PlaceManage/>}/>
+                </Route>
+                <Route path="add" element={<CourseAdd/>}/>
+                <Route path="manage" element={<CourseManage/>}/>
+              </Route>
+              <Route path="member" element={<AdminRoute/>}>
+                <Route path="" element={<MemberManage/>}/>
+              </Route>
+              <Route path="deal">
+                <Route path="add" element={<DealAdd/>}/>
+                <Route path="manage" element={<DealManage/>}/>
+                <Route path="sales-manage" element={<DealSalesManage/>}/>
+              </Route>
             </Route>
-            <Route path="deal">
-              <Route path="add" element={<DealAdd/>}/>
-              <Route path="manage" element={<DealManage/>}/>
-              <Route path="sales-manage" element={<DealSalesManage/>}/>
-            </Route>
-          </Route>
-        </Routes>
+          </Routes>
+        </ModalProvider>
       </AuthProvider>
     </BrowserRouter>
   )

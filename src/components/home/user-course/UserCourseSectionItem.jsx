@@ -1,5 +1,7 @@
+import {Link} from "react-router-dom";
+
 export default function UserCourseSectionItem({course}) {
-  return <div className="flex gap-x-4 mb-4">
+  return <Link to={`/user-course/detail/${course.id}`} className="flex gap-x-4 mb-4">
     <img className="rounded-xl flex-shrink-0 self-start" src={course.image} alt="유저코스 이미지"/>
     <div className="flex flex-col justify-center w-80">
       <small className="font-normal text-sm text-gray-500">{course.state}</small>
@@ -18,5 +20,5 @@ export default function UserCourseSectionItem({course}) {
         <div className="text-sm text-nowrap">좋아요 {course.likes}</div>
       </div>
     </div>
-  </div>;
+  </Link>;
 }

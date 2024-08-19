@@ -1,12 +1,14 @@
 import logoImage from "../../assets/logo.png";
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../../store/AuthContext.jsx";
-export default function Header({modal}) {
+import {useModal} from "../../store/ModalContext.jsx";
+export default function Header() {
   const navigate = useNavigate();
   const { isSignedIn } = useAuth();
+  const { loginModal } = useModal();
 
   function handleLoginForm() {
-    modal.current.open();
+    loginModal.current.open();
   }
   function handleToUserCourse() {
     navigate("/user-course/list");

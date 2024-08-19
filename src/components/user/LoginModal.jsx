@@ -25,7 +25,6 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
       .then((data) => {
         signin(data);
         modal.current.close();
-        navigate("/");
       })
       .catch((error) => {
         console.error("Failed to signin", error);

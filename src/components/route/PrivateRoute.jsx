@@ -1,14 +1,16 @@
 import {useAuth} from "../../store/AuthContext.jsx";
 import {Navigate, Outlet} from "react-router-dom";
 import {useEffect} from "react";
+import {useModal} from "../../store/ModalContext.jsx";
 
-export default function PrivateRoute({setIsShowModal}) {
+export default function PrivateRoute() {
   const { isSignedIn } = useAuth(); // 로그인 상태 가져오기
+  const { setIsShowLoginModal } = useModal(); // 모달 상태 가져오기
 
   // 로그인 상태에 따라 리디렉션 처리
   useEffect(() => {
     if (!isSignedIn) {
-      setIsShowModal(true); // 모달 열기
+      setIsShowLoginModal(true); // 모달 열기
     }
   }, []);
 

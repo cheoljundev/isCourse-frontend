@@ -1,12 +1,14 @@
 import {BoxArrowInLeft, BoxArrowInRight, Crosshair2, GeoAltFill, HouseFill} from "react-bootstrap-icons";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../store/AuthContext.jsx";
+import {useModal} from "../../store/ModalContext.jsx";
 
-export default function Footer({modal}) {
+export default function Footer() {
   const navigate = useNavigate();
   const {isSignedIn, signout} = useAuth();
+  const {loginModal} = useModal();
   function handleLoginForm() {
-    modal.current.open();
+    loginModal.current.open();
   }
   function handleToHome() {
     navigate("/");

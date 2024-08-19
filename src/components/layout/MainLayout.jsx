@@ -3,20 +3,22 @@ import Footer from "../common/Footer.jsx";
 import {Outlet} from "react-router-dom";
 import LoginModal from "../user/LoginModal.jsx";
 import {useEffect} from "react";
+import {useModal} from "../../store/ModalContext.jsx";
 
-export default function MainLayout({isShowModal, setIsShowModal, modal}) {
+export default function MainLayout() {
+  const { loginModal, isShowLoginModal, setIsShowLoginModal } = useModal();
   useEffect(() => {
-    if (isShowModal) {
-      modal.current.open();
-      setIsShowModal(false);
+    if (isShowLoginModal) {
+      loginModal.current.open();
+      setIsShowLoginModal(false);
     }
-  }, [isShowModal]);
+  }, [isShowLoginModal]);
   return (
     <>
-      <LoginModal ref={modal}/>
-      <Header modal={modal}/>
+      <LoginModal ref={loginModal}/>
+      <Header/>
       <Outlet/>
-      <Footer modal={modal}/>
+      <Footer/>
     </>
   )
 }
