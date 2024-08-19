@@ -25,7 +25,7 @@ export default function UserCourseDetail() {
   return (
     <section>
       {loading && <CourseDetailSkeleton/>}
-      {!loading && course && <CourseDetail course={course}/>}
+      {!loading && course && <CourseDetail course={course} id={id}/>}
       <CourseConfirmModal ref={courseConfirmModal}/>
     </section>
   )

@@ -1,8 +1,11 @@
 import {useAuth} from "../../store/AuthContext.jsx";
 import {useModal} from "../../store/ModalContext.jsx";
+import ky from "ky";
+import {useState} from "react";
 
-export default function CourseDetail({course}) {
+export default function CourseDetail({course, id}) {
   const {isSignedIn} = useAuth();
+  const [likes , setLikes] = useState(course.likes);
   const {courseConfirmModal, loginModal} = useModal();
 
   function handleLike() {
@@ -10,7 +13,16 @@ export default function CourseDetail({course}) {
       loginModal.current.open();
       return;
     }
-    // 좋아요 기능
+    ky.patch(`http://localhost:8080/api/course-like/${id}`,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+      .json()
+      .then(data => setLikes(data))
+      .catch((error) => {
+        console.error("Failed to like course", error);
+      });
   }
 
   function handleCourseConfirm() {
@@ -29,7 +41,7 @@ export default function CourseDetail({course}) {
           <small className="text-lg font-light">{course.state}</small>
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-2xl font-bold">{course.name}</h2>
-            <button className="btn btn-ghost btn-sm" onClick={handleLike}>좋아요 {course.likes}</button>
+            <button className="btn btn-ghost btn-sm" onClick={handleLike}>좋아요 {likes}</button>
           </div>
           <small className="mb-4 block">{course.nickname}</small>
           <div className="flex gap-2 mb-4">
