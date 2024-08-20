@@ -1,12 +1,36 @@
 import CourseListBodySkeleton from "../course/CourseListBodySkeleton.jsx";
 import CourseSavedListBody from "./CourseSavedListBody.jsx";
+import {useEffect, useState} from "react";
+import {useSearchParams} from "react-router-dom";
+import ky from "ky";
 
 export default function CourseSavedList() {
+  const [courses, setCourses] = useState(null); // 유저 코스
+  const [loading, setLoading] = useState(true); // 로딩 상태
+  const [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 0;
+  useEffect(() => {
+    ky.get("http://localhost:8080/api/user/course?size=6&page=" + page,
+      {
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      })
+      .json()
+      .then((data) => {
+        setCourses(data); // 데이터 저장
+        setLoading(false); // 로딩 완료
+      })
+      .catch((error) => {
+        console.error("Failed to fetch user courses", error);
+        setLoading(false); // 실패 시에도 로딩 완료
+      });
+  }, []);
   return (
     <section className="px-4">
       <h2 className="text-xl font-semibold mb-4">가본 코스 확인</h2>
-      {/*<CourseListBodySkeleton/>*/}
-      <CourseSavedListBody/>
+      {loading && <CourseListBodySkeleton/>}
+      {!loading && courses && <CourseSavedListBody courses={courses}/>}
     </section>
   )
 }
