@@ -5,7 +5,7 @@ import {useSearchParams} from "react-router-dom";
 import ky from "ky";
 
 export default function CourseSavedList() {
-  const [courses, setCourses] = useState(null); // 유저 코스
+  const [courses, setCourses] = useState(null); // 코스 목록
   const [loading, setLoading] = useState(true); // 로딩 상태
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 0;
