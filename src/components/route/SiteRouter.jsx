@@ -31,8 +31,6 @@ import AdminRoute from "./AdminRoute.jsx";
 import {ModalProvider} from "../../store/ModalContext.jsx";
 
 export default function SiteRouter() {
-  // const loginModalRef = useRef();
-
   return (
     <BrowserRouter>
       <AuthProvider>
