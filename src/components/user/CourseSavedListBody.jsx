@@ -41,9 +41,11 @@ export default function CourseSavedListBody({courses}) {
     <>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 mb-4">
         {
-          content.map((course) => (
-            <li key={course.id}>
-              <Link to={`/user-course/detail/${course.id}`} className="flex flex-col">
+          content.map((course) => {
+            const courseType = course.courseType === "ROLE_USER" ? "user-course" : "recommend-course";
+            return (
+              <li key={course.id}>
+              <Link to={`/${courseType}/detail/${course.id}`} className="flex flex-col">
                 <img className="rounded-xl w-full mb-2" src={course.image} alt="코스 이미지"/>
                 <div className="mb-2 font-bold text-lg">{course.name}</div>
                 <div className="flex gap-2">
@@ -51,8 +53,9 @@ export default function CourseSavedListBody({courses}) {
                   <span className="text-sm">{course.time}</span>
                 </div>
               </Link>
-            </li>
-          ))
+              </li>
+            )
+          })
         }
       </ul>
       <div className="join m-4 mx-auto flex justify-center">
