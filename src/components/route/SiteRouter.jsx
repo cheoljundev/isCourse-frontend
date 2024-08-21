@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import MainLayout from "../layout/MainLayout.jsx";
 import Home from "../home/Home.jsx";
 import SignupTerms from "../user/SignupTerms.jsx";
@@ -9,8 +9,6 @@ import UserCourseDetail from "../user-course/UserCourseDetail.jsx";
 import RecommendCourseList from "../recommend-course/RecommendCourseList.jsx";
 import RecommendCourseDetail from "../recommend-course/RecommendCourseDetail.jsx";
 import CourseShare from "../course/CourseShare.jsx";
-import {useEffect, useRef, useState} from "react";
-import AdminLayout from "../layout/AdminLayout.jsx";
 import DealManage from "../admin/deal/DealManage.jsx";
 import DealAdd from "../admin/deal/DealAdd.jsx";
 import DealSalesManage from "../admin/deal/DealSalesManage.jsx";
@@ -24,11 +22,10 @@ import EditUserInfo from "../user/EditUserInfo.jsx";
 import CourseSavedList from "../user/CourseSavedList.jsx";
 import CourseSharedList from "../user/CourseSharedList.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
-import {AuthProvider} from "../../store/AuthContext.jsx";
 import DealDetail from "../deal/DealDetail.jsx";
 import ManagerRoute from "./ManagerRoute.jsx";
 import AdminRoute from "./AdminRoute.jsx";
-import {ModalProvider, useModal} from "../../store/ModalContext.jsx";
+import {useModal} from "../../store/ModalContext.jsx";
 import MessageModal from "../util/MessageModal.jsx";
 
 export default function SiteRouter() {

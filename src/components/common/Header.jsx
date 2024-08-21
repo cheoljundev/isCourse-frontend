@@ -2,10 +2,11 @@ import logoImage from "../../assets/logo.png";
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../../store/AuthContext.jsx";
 import {useModal} from "../../store/ModalContext.jsx";
+import {useSelector} from "react-redux";
 export default function Header() {
   const navigate = useNavigate();
-  const { isSignedIn } = useAuth();
-  const { loginModal } = useModal();
+  const {loginModal} = useModal();
+  const isSignedIn = useSelector(state => state.authReducer.isSignedIn);
 
   function handleLoginForm() {
     loginModal.current.open();

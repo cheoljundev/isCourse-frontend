@@ -4,13 +4,16 @@ import {useNavigate} from "react-router-dom";
 import ky from "ky";
 import {useAuth} from "../../store/AuthContext.jsx";
 import Alert from "../util/Alert.jsx";
+import {signin} from "../redux/modules/auth.js";
+import {useDispatch} from "react-redux";
 const LoginModal = forwardRef(function LoginModal({}, ref) {
   const modal = useRef();
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  const {signin} = useAuth();
+  // const {signin} = useAuth();
+  const dispatch = useDispatch();
 
   function handleSignup() {
     modal.current.close();
@@ -22,8 +25,8 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
       json: {username: id, password}
     })
       .text()
-      .then((data) => {
-        signin(data);
+      .then((token) => {
+        dispatch(signin(token));
         modal.current.close();
       })
       .catch((error) => {
