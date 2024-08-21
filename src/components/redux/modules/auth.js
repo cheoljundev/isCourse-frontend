@@ -83,11 +83,13 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case SIGNIN:
+      action.payload.token && localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isSignedIn: true,
       };
     case SIGNOUT:
+      localStorage.removeItem("token");
       return {
         ...state,
         isSignedIn: false,
