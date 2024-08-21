@@ -1,7 +1,6 @@
 import {Navigate} from "react-router-dom";
 import {useEffect} from "react";
 import AdminLayout from "../layout/AdminLayout.jsx";
-import {useModal} from "../../store/ModalContext.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {signout} from "../redux/modules/auth.js";
 import {setIsShowLoginModal} from "../redux/modules/modal.js";
