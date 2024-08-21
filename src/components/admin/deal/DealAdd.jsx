@@ -1,12 +1,14 @@
 import PlaceItemSkeleton from "../../course/PlaceItemSkeleton.jsx";
 import {X} from "react-bootstrap-icons";
 import PlaceItem from "../../course/PlaceItem.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useModal} from "../../../store/ModalContext.jsx";
 import ky from "ky";
 
 export default function DealAdd() {
+  const navigate = useNavigate();
+
   const [name , setName] = useState('');
   const [station, setStation] = useState('');
   const [address1, setAddress1] = useState('');
@@ -165,12 +167,7 @@ export default function DealAdd() {
     })
       .json()
       .then(() => {
-        setMessage((prevMessage) => ({
-          ...prevMessage,
-          message: "딜이 등록되었습니다.",
-          error: false,
-        }))
-        messageModal.current.open();
+      navigate('/admin/deal/manage');
     })
       .catch((error) => {
         console.error(error);
