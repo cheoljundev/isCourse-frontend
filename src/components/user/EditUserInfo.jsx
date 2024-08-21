@@ -3,11 +3,12 @@ import {useEffect, useState} from "react";
 import ky from "ky";
 import Alert from "../util/Alert.jsx";
 import {useNavigate} from "react-router-dom";
-import {useAuth} from "../../store/AuthContext.jsx";
+import {useDispatch} from "react-redux";
+import {signout} from "../redux/modules/auth.js";
 
 export default function EditUserInfo() {
   const navigate = useNavigate();
-  const {signout} = useAuth()
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   let [validationPassword, setValidationPassword] = useState(false);
@@ -122,7 +123,7 @@ export default function EditUserInfo() {
     })
       .then(() => {
         setAlert({message: "탈퇴되었습니다.", show: true, type: "success"});
-        signout();
+        dispatch(signout());
         navigate("/");
       });
   }

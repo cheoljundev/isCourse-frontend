@@ -1,11 +1,13 @@
 import {Link, useNavigate} from "react-router-dom";
-import {useAuth} from "../../store/AuthContext.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {signout} from "../redux/modules/auth.js";
 
 export default function MyPage() {
-  const {signout, isManager} = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isManager = useSelector(state => state.authReducer.isManager);
   function handleLogout() {
-    signout();
+    dispatch(signout());
     navigate("/");
   }
   return (

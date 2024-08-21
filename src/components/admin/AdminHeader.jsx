@@ -1,10 +1,10 @@
 import logoImage from "../../assets/logo.png";
 import {GearFill} from "react-bootstrap-icons";
 import {Link} from "react-router-dom";
-import {useAuth} from "../../store/AuthContext.jsx";
+import {useSelector} from "react-redux";
 
 export default function AdminHeader() {
-  const {isAdmin} = useAuth();
+  const isAdmin = useSelector(state => state.authReducer.isAdmin);
   return (
     <header className="mb-4">
       <nav className="navbar bg-base-100">

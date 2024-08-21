@@ -1,7 +1,5 @@
 import logoImage from "../../assets/logo.png";
 import {Link, useNavigate} from "react-router-dom";
-import {useAuth} from "../../store/AuthContext.jsx";
-import {useModal} from "../../store/ModalContext.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsShowLoginModal} from "../redux/modules/modal.js";
 export default function Header() {
