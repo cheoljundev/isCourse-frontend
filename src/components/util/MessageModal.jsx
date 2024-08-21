@@ -1,15 +1,7 @@
 import {forwardRef, useImperativeHandle, useRef} from 'react';
 import {createPortal} from "react-dom";
-const CourseConfirmModal = forwardRef(function CourseConfirmModal({error}, ref) {
+const MessageModal = forwardRef(function MessageModal({message}, ref) {
   const modal = useRef();
-
-  let title = "코스 가보기 완료";
-  let message = "마이페이지에서 확인하세요.";
-
-  if (error.status) {
-    title = "에러";
-    message = error.message;
-  }
 
   useImperativeHandle(ref, () => {
     return {
@@ -20,10 +12,14 @@ const CourseConfirmModal = forwardRef(function CourseConfirmModal({error}, ref) 
   });
 
   return createPortal(
-    <dialog ref={modal} id="my_modal_5" className="modal">
+    <dialog ref={modal} className="modal">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">{title}</h3>
-        <p className="py-4">{message}</p>
+        <h3 className="font-bold text-lg">
+          {
+            message.error ? "오류" : message.title
+          }
+        </h3>
+        <p className="py-4">{message.message}</p>
         <div className="modal-action">
           <form method="dialog">
             <button className="btn">닫기</button>
@@ -36,4 +32,4 @@ const CourseConfirmModal = forwardRef(function CourseConfirmModal({error}, ref) 
   );
 });
 
-export default CourseConfirmModal;
+export default MessageModal;

@@ -3,10 +3,10 @@ import {useModal} from "../../store/ModalContext.jsx";
 import ky from "ky";
 import {useState} from "react";
 
-export default function CourseDetail({course, id, setError}) {
+export default function CourseDetail({course, id}) {
   const {isSignedIn} = useAuth();
   const [likes , setLikes] = useState(course.likes);
-  const {courseConfirmModal, loginModal} = useModal();
+  const {messageModal, loginModal, setMessage} = useModal();
 
   function handleLike() {
     if (!isSignedIn) {
@@ -37,25 +37,33 @@ export default function CourseDetail({course, id, setError}) {
     })
       .json()
       .then(() => {
-        courseConfirmModal.current.open();
+        setMessage((prevMessage) => ({
+          ...prevMessage,
+          title: '코스 가보기 완료',
+          message: '마이페이지에서 확인하세요.',
+          error: false
+        }));
+        messageModal.current.open();
       })
       .catch((error) => {
         if (error.response) {
           error.response.json().then(err => {
             console.error("Failed to select course", err);
-            setError({
-              status: true,
-              message: err.message // 서버에서 받은 message를 설정
-            });
+            setMessage((prevMessage) => ({
+              ...prevMessage,
+              message: err.message,
+              error: true
+            }));
           });
         } else {
           console.error("Failed to select course", error);
-          setError({
-            status: true,
-            message: '알 수 없는 문제'
-          });
+          setMessage((prevMessage) => ({
+            ...prevMessage,
+            message: '[알 수 없는 문제] 코스 선택에 실패했습니다.',
+            error: true
+          }));
         }
-        courseConfirmModal.current.open();
+        messageModal.current.open();
       });
   }
 

@@ -1,12 +1,13 @@
-import PlaceItemSkeleton from "../course/PlaceItemSkeleton.jsx";
+import PlaceItemSkeleton from "../../course/PlaceItemSkeleton.jsx";
 import {X} from "react-bootstrap-icons";
-import PlaceItem from "../course/PlaceItem.jsx";
+import PlaceItem from "../../course/PlaceItem.jsx";
+import {Link} from "react-router-dom";
 
-export default function CourseModify() {
+export default function CourseAdd() {
   return (
     <div className="pb-12">
       <section className="px-4">
-        <h2 className="mb-2 font-bold text-lg">코스 수정하기</h2>
+        <h2 className="mb-2 font-bold text-lg">코스 등록하기</h2>
         <div className="card bg-base-100 w-full shadow-xl mb-6">
           <div className="card-body">
             <h3 className="card-title">코스 정보</h3>
@@ -166,8 +167,8 @@ export default function CourseModify() {
         </div>
       </section>
       <div className="join w-full fixed bottom-0">
-        <button className="btn join-item flex-1">취소</button>
-        <button className="btn btn-primary join-item flex-1">수정</button>
+        <Link to="/admin/course/manage" className="btn join-item flex-1">취소</Link>
+        <button className="btn btn-primary join-item flex-1">등록</button>
       </div>
     </div>
   )

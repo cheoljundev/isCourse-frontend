@@ -55,7 +55,7 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
   })
 
   return createPortal(
-    <dialog ref={modal} id="my_modal_3" className="modal" onClose={handleClose}>
+    <dialog ref={modal} className="modal" onClose={handleClose}>
       <div className="modal-box">
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}

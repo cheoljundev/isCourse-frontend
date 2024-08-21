@@ -1,4 +1,4 @@
-import PlaceItem from "../course/PlaceItem.jsx";
+import PlaceItem from "../../course/PlaceItem.jsx";
 import {Link} from "react-router-dom";
 
 export default function PlaceBring() {

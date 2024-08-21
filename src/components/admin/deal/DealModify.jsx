@@ -1,13 +1,12 @@
-import PlaceItemSkeleton from "../course/PlaceItemSkeleton.jsx";
+import PlaceItemSkeleton from "../../course/PlaceItemSkeleton.jsx";
 import {X} from "react-bootstrap-icons";
-import PlaceItem from "../course/PlaceItem.jsx";
-import {Link} from "react-router-dom";
+import PlaceItem from "../../course/PlaceItem.jsx";
 
-export default function DealAdd() {
+export default function DealModify() {
   return (
     <div className="pb-12">
       <section className="px-4">
-        <h2 className="mb-2 font-bold text-lg">딜 등록하기</h2>
+        <h2 className="mb-2 font-bold text-lg">딜 수정하기</h2>
         <div className="card bg-base-100 w-full shadow-xl mb-6">
           <div className="card-body">
             <h3 className="card-title">딜 정보</h3>
@@ -39,7 +38,7 @@ export default function DealAdd() {
               <div className="label">
                 <span className="label-text font-semibold">딜 이미지</span>
               </div>
-              <input type="file" className="file-input w-full max-w-xs mb-2" multiple={true}/>
+              <input type="file" className="file-input w-full max-w-xs mb-2" multiple="true"/>
               <div className="flex flex-wrap gap-2">
                 <img className="rounded-lg" src="https://picsum.photos/50" alt=""/>
                 <img className="rounded-lg" src="https://picsum.photos/50" alt=""/>
@@ -86,8 +85,8 @@ export default function DealAdd() {
         </div>
       </section>
       <div className="join w-full fixed bottom-0">
-        <Link to="/admin/deal/manage" className="btn join-item flex-1">취소</Link>
-        <button className="btn btn-primary join-item flex-1">등록</button>
+        <button className="btn join-item flex-1">취소</button>
+        <button className="btn btn-primary join-item flex-1">수정</button>
       </div>
     </div>
   )

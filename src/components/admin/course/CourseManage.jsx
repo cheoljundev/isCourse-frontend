@@ -1,5 +1,5 @@
 import {X} from "react-bootstrap-icons";
-import PlaceItem from "../course/PlaceItem.jsx";
+import PlaceItem from "../../course/PlaceItem.jsx";
 import CourseItem from "./CourseItem.jsx";
 
 export default function CourseManage() {

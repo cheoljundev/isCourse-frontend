@@ -1,6 +1,6 @@
 import {X} from "react-bootstrap-icons";
-import PlaceItem from "../course/PlaceItem.jsx";
-import CourseItem from "./CourseItem.jsx";
+import PlaceItem from "../../course/PlaceItem.jsx";
+import CourseItem from "../course/CourseItem.jsx";
 import DealItem from "./DealItem.jsx";
 
 export default function DealManage() {

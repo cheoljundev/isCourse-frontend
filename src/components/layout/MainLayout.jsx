@@ -4,9 +4,10 @@ import {Outlet} from "react-router-dom";
 import LoginModal from "../user/LoginModal.jsx";
 import {useEffect} from "react";
 import {useModal} from "../../store/ModalContext.jsx";
+import MessageModal from "../util/MessageModal.jsx";
 
 export default function MainLayout() {
-  const { loginModal, isShowLoginModal, setIsShowLoginModal } = useModal();
+  const { loginModal, isShowLoginModal, setIsShowLoginModal} = useModal();
   useEffect(() => {
     if (isShowLoginModal) {
       loginModal.current.open();
