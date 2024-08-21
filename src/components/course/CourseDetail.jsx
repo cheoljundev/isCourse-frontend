@@ -1,16 +1,16 @@
-import {useAuth} from "../../store/AuthContext.jsx";
-import {useModal} from "../../store/ModalContext.jsx";
 import ky from "ky";
 import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setIsShowLoginModal, setMessage} from "../redux/modules/modal.js";
 
 export default function CourseDetail({course, id}) {
-  const {isSignedIn} = useAuth();
+  const dispatch = useDispatch();
+  const isSignedIn = useSelector(state => state.authReducer.isSignedIn);
   const [likes , setLikes] = useState(course.likes);
-  const {messageModal, loginModal, setMessage} = useModal();
 
   function handleLike() {
     if (!isSignedIn) {
-      loginModal.current.open();
+      dispatch(setIsShowLoginModal(true));
       return;
     }
     ky.patch(`http://localhost:8080/api/course-like/${id}`,{
@@ -27,7 +27,7 @@ export default function CourseDetail({course, id}) {
 
   function handleCourseConfirm() {
     if (!isSignedIn) {
-      loginModal.current.open();
+      dispatch(setIsShowLoginModal(true));
       return;
     }
     ky.post(`http://localhost:8080/api/select-course/${id}`, {
@@ -37,33 +37,32 @@ export default function CourseDetail({course, id}) {
     })
       .json()
       .then(() => {
-        setMessage((prevMessage) => ({
-          ...prevMessage,
+        dispatch(setMessage({
           title: '코스 가보기 완료',
           message: '마이페이지에서 확인하세요.',
-          error: false
-        }));
-        messageModal.current.open();
+          error: false,
+          isShow: true,
+        }))
       })
       .catch((error) => {
         if (error.response) {
           error.response.json().then(err => {
             console.error("Failed to select course", err);
-            setMessage((prevMessage) => ({
-              ...prevMessage,
+            dispatch(setMessage({
               message: err.message,
-              error: true
+              error: true,
+              isShow: true,
             }));
           });
         } else {
           console.error("Failed to select course", error);
-          setMessage((prevMessage) => ({
-            ...prevMessage,
+
+          dispatch(setMessage({
             message: '[알 수 없는 문제] 코스 선택에 실패했습니다.',
-            error: true
+            error: true,
+            isShow: true,
           }));
         }
-        messageModal.current.open();
       });
   }
 

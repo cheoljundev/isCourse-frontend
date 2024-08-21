@@ -4,12 +4,12 @@ import {X} from "react-bootstrap-icons";
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ky from "ky";
-import {useModal} from "../../store/ModalContext.jsx";
-
-
+import {useDispatch} from "react-redux";
+import {setMessage} from "../redux/modules/modal.js";
 
 export default function CourseShare() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [hour, setHour] = useState(0);
@@ -42,7 +42,6 @@ export default function CourseShare() {
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedPlaces, setSelectedPlaces] = useState([]);
-  const {messageModal, setMessage} = useModal();
 
   function handleSelectTag(event) {
     const selectedValue = event.target.value;
@@ -126,12 +125,11 @@ export default function CourseShare() {
 
   function handleShareCourse() {
     if (name.length < 1 || introduce.length < 200 || selectedPlaces.length < 1 || hour <= 0 || minute <= 0) {
-      setMessage((prevMessage) => ({
-        ...prevMessage,
+      dispatch(setMessage({
+        message: "입력값을 확인해주세요.",
         error: true,
-        message: "입력값을 확인해주세요."
+        isShow: true,
       }));
-      messageModal.current.open();
       return;
     }
 
@@ -152,12 +150,11 @@ export default function CourseShare() {
       .then(() => navigate("/user-course/list"))
       .catch(err => {
         console.error("Failed to share course", err);
-        setMessage((prevMessage) => ({
-          ...prevMessage,
+        dispatch(setMessage({
+          message: "코스 공유에 실패했습니다.",
           error: true,
-          message: "코스 공유에 실패했습니다."
+          isShow: true,
         }));
-        messageModal.current.open();
       });
   }
 

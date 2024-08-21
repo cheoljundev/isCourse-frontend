@@ -1,22 +1,22 @@
-import {forwardRef, useImperativeHandle, useRef} from 'react';
+import {forwardRef, useEffect, useRef} from 'react';
 import {createPortal} from "react-dom";
-const MessageModal = forwardRef(function MessageModal({message}, ref) {
+import {useSelector} from "react-redux";
+const MessageModal = forwardRef(function MessageModal() {
   const modal = useRef();
+  const message = useSelector(state => state.modalReducer.message);
 
-  useImperativeHandle(ref, () => {
-    return {
-      open() {
-        modal.current.showModal();
-      }
+  useEffect(() => {
+    if (message.isShow) {
+      modal.current.showModal();
     }
-  });
+  }, [message]);
 
   return createPortal(
     <dialog ref={modal} className="modal">
       <div className="modal-box">
         <h3 className="font-bold text-lg">
           {
-            message.error ? "오류" : message.title
+            message.isError ? "오류" : message.title
           }
         </h3>
         <p className="py-4">{message.message}</p>

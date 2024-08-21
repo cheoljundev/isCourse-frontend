@@ -2,14 +2,15 @@ import logoImage from "../../assets/logo.png";
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../../store/AuthContext.jsx";
 import {useModal} from "../../store/ModalContext.jsx";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setIsShowLoginModal} from "../redux/modules/modal.js";
 export default function Header() {
   const navigate = useNavigate();
-  const {loginModal} = useModal();
+  const dispatch = useDispatch();
   const isSignedIn = useSelector(state => state.authReducer.isSignedIn);
 
   function handleLoginForm() {
-    loginModal.current.open();
+    dispatch(setIsShowLoginModal(true));
   }
   function handleToUserCourse() {
     navigate("/user-course/list");

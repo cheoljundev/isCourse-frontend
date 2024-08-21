@@ -1,16 +1,16 @@
 import {Navigate, Outlet} from "react-router-dom";
 import {useEffect} from "react";
-import {useModal} from "../../store/ModalContext.jsx";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setIsShowLoginModal} from "../redux/modules/modal.js";
 
 export default function PrivateRoute() {
   const isSignedIn = useSelector(state => state.authReducer.isSignedIn);
-  const { setIsShowLoginModal } = useModal(); // 모달 상태 가져오기
+  const dispatch = useDispatch();
 
   // 로그인 상태에 따라 리디렉션 처리
   useEffect(() => {
     if (!isSignedIn) {
-      setIsShowLoginModal(true); // 모달 열기
+      dispatch(setIsShowLoginModal(true));
     }
   }, []);
 

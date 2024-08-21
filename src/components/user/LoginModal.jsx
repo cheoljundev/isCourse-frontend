@@ -1,19 +1,25 @@
-import {forwardRef, useImperativeHandle, useRef, useState} from 'react';
+import {forwardRef, useEffect, useRef, useState} from 'react';
 import {createPortal} from "react-dom";
 import {useNavigate} from "react-router-dom";
 import ky from "ky";
-import {useAuth} from "../../store/AuthContext.jsx";
 import Alert from "../util/Alert.jsx";
 import {signin} from "../redux/modules/auth.js";
-import {useDispatch} from "react-redux";
-const LoginModal = forwardRef(function LoginModal({}, ref) {
+import {useDispatch, useSelector} from "react-redux";
+import {setIsShowLoginModal} from "../redux/modules/modal.js";
+const LoginModal = forwardRef(function LoginModal() {
   const modal = useRef();
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  // const {signin} = useAuth();
   const dispatch = useDispatch();
+  const isShowLoginModal = useSelector(state => state.modalReducer.isShowLoginModal);
+
+  useEffect(() => {
+    if (isShowLoginModal) {
+      modal.current.showModal();
+    }
+  }, [isShowLoginModal]);
 
   function handleSignup() {
     modal.current.close();
@@ -47,15 +53,8 @@ const LoginModal = forwardRef(function LoginModal({}, ref) {
     setId("");
     setPassword("");
     setError(false);
+    dispatch(setIsShowLoginModal(false));
   }
-
-  useImperativeHandle(ref, () => {
-    return {
-      open() {
-        modal.current.showModal();
-      }
-    }
-  })
 
   return createPortal(
     <dialog ref={modal} className="modal" onClose={handleClose}>

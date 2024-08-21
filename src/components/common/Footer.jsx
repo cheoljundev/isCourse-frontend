@@ -1,16 +1,15 @@
 import {BoxArrowInLeft, BoxArrowInRight, Crosshair2, GeoAltFill, HouseFill} from "react-bootstrap-icons";
 import {useNavigate} from "react-router-dom";
-import {useModal} from "../../store/ModalContext.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {signout} from "../redux/modules/auth.js";
+import {setIsShowLoginModal} from "../redux/modules/modal.js";
 
 export default function Footer() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {loginModal} = useModal();
   const isSignedIn = useSelector(state => state.authReducer.isSignedIn);
   function handleLoginForm() {
-    loginModal.current.open();
+    dispatch(setIsShowLoginModal(true));
   }
   function handleToHome() {
     navigate("/");

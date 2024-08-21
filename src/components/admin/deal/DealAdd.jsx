@@ -1,13 +1,12 @@
-import PlaceItemSkeleton from "../../course/PlaceItemSkeleton.jsx";
-import {X} from "react-bootstrap-icons";
-import PlaceItem from "../../course/PlaceItem.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {useModal} from "../../../store/ModalContext.jsx";
 import ky from "ky";
+import {useDispatch} from "react-redux";
+import {setMessage} from "../../redux/modules/modal.js";
 
 export default function DealAdd() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [name , setName] = useState('');
   const [station, setStation] = useState('');
@@ -21,7 +20,6 @@ export default function DealAdd() {
   const [beforePrice, setBeforePrice] = useState(0);
   const [price, setPrice] = useState(0);
   const [introduce, setIntroduce] = useState('');
-  const {messageModal, setMessage} = useModal();
 
   const [selectedImages, setSelectedImages] = useState([]);
   const [images, setImages] = useState([]);
@@ -94,12 +92,11 @@ export default function DealAdd() {
 
   useEffect(() => {
     if (price > beforePrice) {
-      setMessage((prevMessage) => ({
-        ...prevMessage,
+      dispatch(setMessage({
         message: "가격은 정가보다 높을 수 없습니다.",
         error: true,
-      }))
-      messageModal.current.open();
+        isShow: true,
+      }));
       setPrice(Number(0));
     }
   }, [price]);
@@ -126,12 +123,11 @@ export default function DealAdd() {
       introduce.length < 50 ||
       images.length === 0
     ) {
-      setMessage((prevMessage) => ({
-        ...prevMessage,
+      dispatch(setMessage({
         message: "모든 항목을 입력해주세요.",
         error: true,
-      }))
-      messageModal.current.open();
+        isShow: true,
+      }));
       return;
     }
 
@@ -171,12 +167,11 @@ export default function DealAdd() {
     })
       .catch((error) => {
         console.error(error);
-        setMessage((prevMessage) => ({
-          ...prevMessage,
+        dispatch(setMessage({
           message: "딜 등록에 실패했습니다.",
           error: true,
-        }))
-        messageModal.current.open();
+          isShow: true,
+        }));
       });
   }
   return (
