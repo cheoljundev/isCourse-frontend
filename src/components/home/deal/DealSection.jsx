@@ -12,6 +12,7 @@ export default function DealSection() {
     ky.get("http://localhost:8080/api/deal")
       .json()
       .then((data) => {
+        console.log(data)
         setDeals(data); // 데이터 저장
         setLoading(false); // 로딩 완료
       })
