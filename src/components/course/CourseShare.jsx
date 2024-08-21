@@ -4,6 +4,7 @@ import {X} from "react-bootstrap-icons";
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ky from "ky";
+import {useModal} from "../../store/ModalContext.jsx";
 
 
 
@@ -41,6 +42,7 @@ export default function CourseShare() {
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedPlaces, setSelectedPlaces] = useState([]);
+  const {messageModal, setMessage} = useModal();
 
   function handleSelectTag(event) {
     const selectedValue = event.target.value;
@@ -123,6 +125,16 @@ export default function CourseShare() {
   }
 
   function handleShareCourse() {
+    if (name.length < 1 || introduce.length < 200 || selectedPlaces.length < 1 || hour <= 0 || minute <= 0) {
+      setMessage((prevMessage) => ({
+        ...prevMessage,
+        error: true,
+        message: "입력값을 확인해주세요."
+      }));
+      messageModal.current.open();
+      return;
+    }
+
     ky.post("http://localhost:8080/api/share-course",
       {
         json: {
@@ -131,14 +143,22 @@ export default function CourseShare() {
           minute,
           introduce,
           tagList: selectedTags.map(tag => tag.code),
-          placeIdList: selectedPlaces.map(place => place.id)
+          placeIdList: selectedPlaces.map(place => place.id),
         },
         headers: {
           "Authorization": "Bearer " + localStorage.getItem("token")
         }
       })
       .then(() => navigate("/user-course/list"))
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error("Failed to share course", err);
+        setMessage((prevMessage) => ({
+          ...prevMessage,
+          error: true,
+          message: "코스 공유에 실패했습니다."
+        }));
+        messageModal.current.open();
+      });
   }
 
   function handleAddPlace(place) {
