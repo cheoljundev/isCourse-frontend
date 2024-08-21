@@ -121,7 +121,7 @@ export default function DealAdd() {
       closing === '' ||
       beforePrice === 0 ||
       price === 0 ||
-      introduce === '' ||
+      introduce.length < 50 ||
       images.length === 0
     ) {
       setMessage((prevMessage) => ({
