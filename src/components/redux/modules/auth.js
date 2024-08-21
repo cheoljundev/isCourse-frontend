@@ -2,6 +2,7 @@ import ky from "ky";
 
 export const SIGNIN = 'auth/SIGNIN';
 export const SIGNOUT = 'auth/SIGNOUT';
+export const SET_SIGNED_IN = 'auth/SET_SIGNED_IN';
 export const SET_MANAGER = 'auth/SET_MANAGER';
 export const SET_ADMIN = 'auth/SET_ADMIN';
 export const SET_LOADING = 'auth/SET_LOADING';
@@ -14,12 +15,16 @@ export const signout = () => (
   { type: SIGNOUT }
 );
 
-export const setManager = () => (
-  { type: SET_MANAGER }
+export const setIsSignedIn = (isSignIn) => (
+  { type: SET_SIGNED_IN, payload: { isSignIn }}
 );
 
-export const setAdmin = () => (
-  { type: SET_ADMIN }
+export const setManager = (isManager) => (
+  { type: SET_MANAGER, payload: { isManager }}
+);
+
+export const setAdmin = (isAdmin) => (
+  { type: SET_ADMIN, payload: { isAdmin }}
 );
 
 export const setLoading = (loading) => (
@@ -27,47 +32,42 @@ export const setLoading = (loading) => (
 );
 
 export const checkAuthStatus = () => {
-  return async (dispatch) => {
+  return (dispatch) => {
     const token = localStorage.getItem("token");
 
+    dispatch(setLoading(true));
+
     if (token) {
-      dispatch(setLoading(true));
-      try {
-        await ky.post('http://localhost:8080/api/check-token', {
-          headers: {
-            'Authorization': `Bearer ${token}`
+      ky.get('http://localhost:8080/api/check-token', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .json()
+        .then((response) => {
+          if (response) {
+            dispatch(setIsSignedIn(response.isSignin));
+            dispatch(setManager(response.isManager));
+            dispatch(setAdmin(response.isAdmin));
+          } else {
+            dispatch(setIsSignedIn(false));
+            dispatch(setManager(false));
+            dispatch(setAdmin(false));
           }
+        })
+        .catch((error) => {
+          console.error("Error checking authentication status:", error);
+          dispatch(setIsSignedIn(false));
+          dispatch(setManager(false));
+          dispatch(setAdmin(false));
+        })
+        .finally(() => {
+          dispatch(setLoading(false));
         });
-
-        dispatch(signin(token));
-
-        try {
-          await ky.post('http://localhost:8080/api/manager/check-token', {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-          dispatch(setManager());
-        } catch {
-          // 매니저가 아니면 아무 것도 하지 않음
-        }
-
-        try {
-          await ky.post('http://localhost:8080/api/admin/check-token', {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-          dispatch(setAdmin());
-        } catch {
-          // 어드민이 아니면 아무 것도 하지 않음
-        }
-      } catch {
-        dispatch(signout());
-      } finally {
-        dispatch(setLoading(false));
-      }
     } else {
+      dispatch(setIsSignedIn(false));
+      dispatch(setManager(false));
+      dispatch(setAdmin(false));
       dispatch(setLoading(false));
     }
   };
@@ -96,15 +96,20 @@ const authReducer = (state = initState, action) => {
         isManager: false,
         isAdmin: false,
       };
+    case SET_SIGNED_IN:
+      return {
+        ...state,
+        isSignedIn: action.payload.isSignIn,
+      };
     case SET_MANAGER:
       return {
         ...state,
-        isManager: true,
+        isManager: action.payload.isManager,
       };
     case SET_ADMIN:
       return {
         ...state,
-        isAdmin: true,
+        isAdmin: action.payload.isAdmin,
       };
     case SET_LOADING:
       return {

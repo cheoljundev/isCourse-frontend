@@ -30,9 +30,9 @@ const LoginModal = forwardRef(function LoginModal() {
     ky.post("http://localhost:8080/api/signin", {
       json: {username: id, password}
     })
-      .text()
-      .then((token) => {
-        dispatch(signin(token));
+      .json()
+      .then((data) => {
+        dispatch(signin(data.jwt));
         modal.current.close();
       })
       .catch((error) => {

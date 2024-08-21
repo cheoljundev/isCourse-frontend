@@ -8,6 +8,7 @@ import MessageModal from "./components/util/MessageModal.jsx";
 function App() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
+  const isSignedIn = useSelector((state) => state.authReducer.isSignedIn);
 
   useEffect(() => {
     dispatch(checkAuthStatus());
