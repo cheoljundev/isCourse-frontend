@@ -1,15 +1,10 @@
 import {Link, useNavigate} from "react-router-dom";
 
-export default function UserCourseListBody({courses}) {
+export default function UserCourseListBody({page, setPage, isFirst, isLast, totalPages, content}) {
   const navigate = useNavigate();
   function handleToCourseShare() {
     navigate("/course-share");
   }
-  const content = courses.content;
-  const page = courses.pageable.pageNumber;
-  const totalPages = courses.totalPages;
-  const isFirst = courses.first;
-  const isLast = courses.last;
 
   let prevClass = "join-item btn";
   let nextClass = "join-item btn";
@@ -22,22 +17,22 @@ export default function UserCourseListBody({courses}) {
 
   function handlePrev() {
     if (!isFirst) {
-      navigate(`/user-course/list?size=6&page=${page - 1}`);
+      setPage(page - 1);
     }
   }
 
   function handleNext() {
     if (!isLast) {
-      navigate(`/user-course/list?size=6&page=${page + 1}`);
+      setPage(page + 1)
     }
   }
 
   function handlePage() {
-    navigate(`/user-course/list?size=6&page=${page}`);
+    setPage(page);
   }
 
   function handleLastPage() {
-    navigate(`/user-course/list?size=6&page=${totalPages - 1}`);
+    setPage(totalPages - 1);
   }
 
   return (
