@@ -1,13 +1,6 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-export default function RecommendCourseListBody({courses}) {
-  const navigate = useNavigate();
-  const content = courses.content || [];
-  const page = courses.pageable?.pageNumber ?? 0;
-  const totalPages = courses.totalPages ?? 0;
-  const isFirst = courses.first ?? true;
-  const isLast = courses.last ?? true;
-
+export default function RecommendCourseListBody({page, setpage, isFirst, isLast, totalPages, content}) {
   let prevClass = "join-item btn";
   let nextClass = "join-item btn";
   if (isFirst) {
@@ -19,22 +12,22 @@ export default function RecommendCourseListBody({courses}) {
 
   function handlePrev() {
     if (!isFirst) {
-      navigate(`/recommend-course/list?size=6&page=${page - 1}`);
+      setpage(page - 1);
     }
   }
 
   function handleNext() {
     if (!isLast) {
-      navigate(`/recommend-course/list?size=6&page=${page + 1}`);
+      setpage(page + 1);
     }
   }
 
   function handlePage() {
-    navigate(`/recommend-course/list?size=6&page=${page}`);
+    setpage(page);
   }
 
   function handleLastPage() {
-    navigate(`/recommend-course/list?size=6&page=${totalPages - 1}`);
+    setpage(totalPages - 1);
   }
   return (
     <>
