@@ -32,7 +32,7 @@ const LoginModal = forwardRef(function LoginModal() {
     })
       .json()
       .then((data) => {
-        dispatch(signin(data.jwt));
+        dispatch(signin(data));
         modal.current.close();
       })
       .catch((error) => {

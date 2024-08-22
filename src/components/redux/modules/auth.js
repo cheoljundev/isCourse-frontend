@@ -7,8 +7,15 @@ export const SET_MANAGER = 'auth/SET_MANAGER';
 export const SET_ADMIN = 'auth/SET_ADMIN';
 export const SET_LOADING = 'auth/SET_LOADING';
 
-export const signin = (token) => (
-  { type: SIGNIN, payload: { token } }
+export const signin = ({jwt, checkResponse}) => (
+  { type: SIGNIN, payload:
+      {
+        token:jwt,
+        isSignIn: checkResponse.isSignIn,
+        isManager: checkResponse.isManager,
+        isAdmin: checkResponse.isAdmin
+    }
+  }
 );
 
 export const signout = () => (
@@ -46,7 +53,7 @@ export const checkAuthStatus = () => {
         .json()
         .then((response) => {
           if (response) {
-            dispatch(setIsSignedIn(response.isSignin));
+            dispatch(setIsSignedIn(response.isSignIn));
             dispatch(setManager(response.isManager));
             dispatch(setAdmin(response.isAdmin));
           } else {
@@ -86,7 +93,9 @@ const authReducer = (state = initState, action) => {
       action.payload.token && localStorage.setItem("token", action.payload.token);
       return {
         ...state,
-        isSignedIn: true,
+        isSignedIn: action.payload.isSignIn,
+        isManager: action.payload.isManager,
+        isAdmin: action.payload.isAdmin,
       };
     case SIGNOUT:
       localStorage.removeItem("token");
