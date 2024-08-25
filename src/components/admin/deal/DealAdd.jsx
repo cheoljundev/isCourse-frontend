@@ -3,23 +3,41 @@ import {useEffect, useState} from "react";
 import ky from "ky";
 import {useDispatch} from "react-redux";
 import {setMessage} from "../../redux/modules/modal.js";
+import useField from "../../../hooks/useField.js";
 
 export default function DealAdd() {
+  const initFieldsState = {
+    name: '',
+    station: '',
+    address1: '',
+    address2: '',
+    product: '',
+    contact: '',
+    opening: '',
+    closing: '',
+    parking: true,
+    introduce: '',
+  }
+
+  const [fields, handleFieldChange] = useField(initFieldsState);
+
+  const {
+    name,
+    station,
+    address1,
+    address2,
+    product,
+    contact,
+    opening,
+    closing,
+    parking,
+    introduce
+  } = fields;
+
+  const [price, setPrice] = useState(0);
+  const [beforePrice, setBeforePrice] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [name , setName] = useState('');
-  const [station, setStation] = useState('');
-  const [address1, setAddress1] = useState('');
-  const [address2, setAddress2] = useState('');
-  const [product, setProduct] = useState('');
-  const [contact, setContact] = useState('');
-  const [opening, setOpening] = useState('');
-  const [closing, setClosing] = useState('');
-  const [parking, setParking] = useState(true);
-  const [beforePrice, setBeforePrice] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [introduce, setIntroduce] = useState('');
 
   const [selectedImages, setSelectedImages] = useState([]);
   const [images, setImages] = useState([]);
@@ -38,42 +56,6 @@ export default function DealAdd() {
     Promise.all(imagesArray).then((images) => setSelectedImages(images));
     setImages(files);
 
-  }
-
-  function handleName(event) {
-    setName(event.target.value);
-  }
-
-  function handleStation(event) {
-    setStation(event.target.value);
-  }
-
-  function handleAddress1(event) {
-    setAddress1(event.target.value);
-  }
-
-  function handleAddress2(event) {
-    setAddress2(event.target.value);
-  }
-
-  function handleProduct(event) {
-    setProduct(event.target.value);
-  }
-
-  function handleContact(event) {
-    setContact(event.target.value);
-  }
-
-  function handleOpening(event) {
-    setOpening(event.target.value);
-  }
-
-  function handleClosing(event) {
-    setClosing(event.target.value);
-  }
-
-  function handleParking(event) {
-    setParking(event.target.value);
   }
 
   function handleBeforePrice(event) {
@@ -103,26 +85,45 @@ export default function DealAdd() {
 
   const formattedPrice = price ? price.toLocaleString() : "";
 
-  function handleIntroduce(event) {
-    setIntroduce(event.target.value);
-  }
-
   function handleAddDeal() {
 
-    if (
-      name === '' ||
-      station === '' ||
-      address1 === '' ||
-      address2 === '' ||
-      product === '' ||
-      contact === '' ||
-      opening === '' ||
-      closing === '' ||
-      beforePrice === 0 ||
-      price === 0 ||
-      introduce.length < 50 ||
-      images.length === 0
-    ) {
+
+    const validFields = name !== '' &&
+      station !== '' &&
+      address1 !== '' &&
+      address2 !== '' &&
+      product !== '' &&
+      contact !== '' &&
+      opening !== '' &&
+      closing !== '' &&
+      beforePrice > 0 &&
+      price > 0 &&
+      introduce.length >= 50 &&
+      images.length > 0;
+
+    const validIntroduce = introduce.length >= 50;
+
+    if (!validIntroduce) {
+      dispatch(setMessage({
+        message: `소개는 최소 50자 이상 입력해주세요. 현재 글자 수 : ${introduce.length}`,
+        error: true,
+        isShow: true,
+      }));
+      return;
+    }
+
+    const validImages = images.length > 0;
+
+    if (!validImages) {
+      dispatch(setMessage({
+        message: "이미지를 1개 이상 등록해주세요.",
+        error: true,
+        isShow: true,
+      }));
+      return;
+    }
+
+    if (!validFields) {
       dispatch(setMessage({
         message: "모든 항목을 입력해주세요.",
         error: true,
@@ -185,37 +186,37 @@ export default function DealAdd() {
               <div className="label">
                 <span className="label-text font-semibold">딜 제목</span>
               </div>
-              <input type="text" placeholder="딜 제목 입력" value={name} onChange={handleName} className="input input-bordered w-full max-w-xs"/>
+              <input type="text" placeholder="딜 제목 입력" name="name" value={name} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">딜 지역</span>
               </div>
-              <input type="text" placeholder="딜 지역 입력" value={station} onChange={handleStation} className="input input-bordered w-full max-w-xs"/>
+              <input type="text" placeholder="딜 지역 입력" name="station" value={station} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">주소지</span>
               </div>
-              <input type="text" placeholder="주소지 입력" value={address1} onChange={handleAddress1} className="input input-bordered w-full max-w-xs"/>
+              <input type="text" placeholder="주소지 입력" name="address1" value={address1} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">주소지 상세</span>
               </div>
-              <input type="text" placeholder="주소지 상세 입력" value={address2} onChange={handleAddress2} className="input input-bordered w-full max-w-xs"/>
+              <input type="text" placeholder="주소지 상세 입력" name="address2" value={address2} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">딜 상품명</span>
               </div>
-              <input type="text" placeholder="딜 상품명 입력" value={product} onChange={handleProduct} className="input input-bordered w-full max-w-xs"/>
+              <input type="text" placeholder="딜 상품명 입력" name="product" value={product} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">딜 연락처</span>
               </div>
-              <input type="tel" placeholder="딜 연락처 입력" value={contact} onChange={handleContact} className="input input-bordered w-full max-w-xs"/>
+              <input type="tel" placeholder="딜 연락처 입력" name="contact" value={contact} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
@@ -234,21 +235,21 @@ export default function DealAdd() {
               <div className="label">
                 <span className="label-text font-semibold">시간</span>
               </div>
-              <input type="text" placeholder="영업 요일 및 시간 입력" value={opening} onChange={handleOpening} className="input input-bordered w-full max-w-xs"/>
+              <input type="text" placeholder="영업 요일 및 시간 입력" name="opening" value={opening} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">휴무</span>
               </div>
-              <input type="text" placeholder="휴무 요일 입력" value={closing} onChange={handleClosing} className="input input-bordered w-full max-w-xs"/>
+              <input type="text" placeholder="휴무 요일 입력" name="closing" value={closing} onChange={handleFieldChange} className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">주차 여부</span>
               </div>
-              <select className="select select-bordered w-full max-w-xs mb-2" defaultValue="true" onChange={handleParking}>
-                <option value="true">가능</option>
-                <option value="false">불가능</option>
+              <select className="select select-bordered w-full max-w-xs mb-2" name="parking" defaultValue={parking} onChange={handleFieldChange}>
+                <option name="parking" value="true">가능</option>
+                <option name="parking" value="false">불가능</option>
               </select>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
@@ -269,7 +270,7 @@ export default function DealAdd() {
           <div className="card-body">
             <h3 className="card-title">딜 소개</h3>
             <p className="text-red-500">최소 50자 이상 작성</p>
-            <textarea className="textarea textarea-sm textarea-bordered" value={introduce} onChange={handleIntroduce} cols="30" rows="4"
+            <textarea className="textarea textarea-sm textarea-bordered" name="introduce" value={introduce} onChange={handleFieldChange} cols="30" rows="4"
                       minLength="50"></textarea>
           </div>
         </div>
