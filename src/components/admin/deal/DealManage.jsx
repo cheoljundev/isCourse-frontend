@@ -13,6 +13,7 @@ export default function DealManage() {
     maxPrice: '',
   };
   const {fields, handleFieldChange} = useField(initFieldsState);
+  const {name, minPrice, maxPrice} = fields;
   const [loading, setLoading] = useState(true);
   const [deals, setDeals] = useState([]);
   const [page , setPage] = useState(0);
@@ -21,11 +22,11 @@ export default function DealManage() {
   const [isLast, setIsLast] = useState(false);
 
   function handleSearchDeals() {
-    setPage(0);
+    getDeals();
   }
 
   function getDeals(page = 0) {
-    ky.get(`http://localhost:8080/api/manager/deal?size=6&page=${page}&name=${fields.name}&minPrice=${fields.minPrice}&maxPrice=${fields.maxPrice}`,
+    ky.get(`http://localhost:8080/api/manager/deal?size=6&page=${page}&name=${name}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
       {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -34,6 +35,7 @@ export default function DealManage() {
       })
       .json()
       .then(data => {
+        setPage(page);
         setDeals(data.content);
         setIsFirst(data.first);
         setIsLast(data.last);
@@ -65,16 +67,16 @@ export default function DealManage() {
               <div className="label">
                 <span className="label-text font-semibold">딜 제목</span>
               </div>
-              <input type="text" name="name" value={fields.name} onChange={handleFieldChange} placeholder="딜 제목 입력" className="input input-bordered w-full max-w-xs"/>
+              <input type="text" name="name" value={name} onChange={handleFieldChange} placeholder="딜 제목 입력" className="input input-bordered w-full max-w-xs"/>
             </label>
             <label className="form-control w-full max-w-xs mb-2">
               <div className="label">
                 <span className="label-text font-semibold">가격</span>
               </div>
               <div className="flex gap-x-1 items-center">
-                <input type="number" name="minPrice" value={fields.minPrice} onChange={handleFieldChange} placeholder="최소 가격" className="input input-bordered w-full max-w-xs"/>
+                <input type="number" name="minPrice" value={minPrice} onChange={handleFieldChange} placeholder="최소 가격" className="input input-bordered w-full max-w-xs"/>
                 <span>~</span>
-                <input type="number" name="maxPrice" value={fields.maxPrice} onChange={handleFieldChange} placeholder="최대 가격" className="input input-bordered w-full max-w-xs"/>
+                <input type="number" name="maxPrice" value={maxPrice} onChange={handleFieldChange} placeholder="최대 가격" className="input input-bordered w-full max-w-xs"/>
               </div>
             </label>
             <button className="btn btn-primary join-item flex-1" onClick={handleSearchDeals}>장소 검색하기</button>
