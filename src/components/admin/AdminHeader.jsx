@@ -45,7 +45,7 @@ export default function AdminHeader() {
                   <ul className="p-2">
                     <li><Link to="/admin/deal/add">딜 등록하기</Link></li>
                     <li><Link to="/admin/deal/manage">딜 관리하기</Link></li>
-                    <li><Link to="/admin/deal/sales-manage">딜 판매관리</Link></li>
+                    {/*<li><Link to="/admin/deal/sales-manage">딜 판매관리</Link></li>*/}
                   </ul>
                 </details>
               </li>
@@ -74,7 +74,7 @@ export default function AdminHeader() {
                 <ul className="p-2">
                   <li><Link to="/admin/deal/add">딜 등록하기</Link></li>
                   <li><Link to="/admin/deal/manage">딜 관리하기</Link></li>
-                  <li><Link to="/admin/deal/sales-manage">딜 판매관리</Link></li>
+                  {/*<li><Link to="/admin/deal/sales-manage">딜 판매관리</Link></li>*/}
                 </ul>
               </details>
             </li>
