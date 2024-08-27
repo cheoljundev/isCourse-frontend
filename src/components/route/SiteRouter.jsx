@@ -25,6 +25,7 @@ import PrivateRoute from "./PrivateRoute.jsx";
 import DealDetail from "../deal/DealDetail.jsx";
 import ManagerRoute from "./ManagerRoute.jsx";
 import AdminRoute from "./AdminRoute.jsx";
+import DealManageDetail from "../admin/deal/DealManageDetail.jsx";
 
 export default function SiteRouter() {
   return (
@@ -76,6 +77,7 @@ export default function SiteRouter() {
             <Route path="deal">
               <Route path="add" element={<DealAdd/>}/>
               <Route path="manage" element={<DealManage/>}/>
+              <Route path="manage/:id" element={<DealManageDetail/>}/>
               <Route path="sales-manage" element={<DealSalesManage/>}/>
             </Route>
           </Route>
