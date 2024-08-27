@@ -30,7 +30,7 @@ export default function DealDetailBody({deal}) {
           </div>
         </div>
       </div>
-      <p className="m-6 text-lg text-center">{deal.description}</p>
+      <p className="m-6 text-lg text-center break-all">{deal.description}</p>
       <div className="flex justify-between mb-8 items-center">
         <h4>예약/문의하기</h4>
         <a href={`tel:${deal.contact}`} className="rounded-2xl py-1 px-4 border border-stone-950 border-solid">${deal.contact}</a>
