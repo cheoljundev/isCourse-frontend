@@ -4,6 +4,7 @@ const SET_FIELD = 'SET_FIELD';
 const SET_FIELD_ONE = 'SET_FIELD_ONE';
 const SET_FIELDS = 'SET_FIELDS';
 const RESET_FIELDS = 'RESET_FIELDS';
+const RESET_ARRAY_FIELDS = 'RESET_ARRAY_FIELDS';
 
 function formReducer(state, action) {
   switch (action.type) {
@@ -23,7 +24,15 @@ function formReducer(state, action) {
         ...action.payload,
       };
     case RESET_FIELDS:
-      return action.initialState; // 필드를 초기 상태로 리셋
+      return {
+        ...state,
+        ...action.payload,
+      }
+    case RESET_ARRAY_FIELDS:
+      return action.payload.fields.reduce((acc, field) => {
+        acc[field] = action.payload.initialState[field];
+        return acc;
+      }, { ...state });
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
@@ -63,14 +72,24 @@ function useField(initialState) {
     });
   }, []);
 
-  const handleReset = useCallback(() => {
+  const resetFields = useCallback(() => {
     dispatch({
-      type: RESET_FIELDS,
-      initialState,
+      type: SET_FIELDS,
+      payload: initialState,
     });
   }, [initialState]);
 
-  return {fields, handleFieldChange, handleFieldNumber, setField, setFields, handleReset};
+  const resetArrayFields = useCallback((fields) => {
+    dispatch({
+      type: RESET_ARRAY_FIELDS,
+      payload: {
+        fields,
+        initialState,
+      },
+    });
+  }, [initialState]);
+
+  return {fields, handleFieldChange, handleFieldNumber, setField, setFields, resetFields, resetArrayFields};
 }
 
 export default useField;

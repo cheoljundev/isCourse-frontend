@@ -1,4 +1,3 @@
-import {X} from "react-bootstrap-icons";
 import PlaceItem from "../../course/PlaceItem.jsx";
 
 export default function PlaceManage() {
