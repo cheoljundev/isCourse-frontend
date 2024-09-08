@@ -69,7 +69,7 @@ export default function CourseDetail({course, id}) {
   return (
     <div className="pb-16">
       <header className="relative mb-4">
-        <img className="object-cover w-full h-52 filter brightness-50" src={course.image} alt="코스 배경"/>
+        <img className="object-cover w-full filter brightness-50" src={course.image} alt="코스 배경"/>
         <div className="absolute m-auto left-0 top-0 p-4 h-full w-full text-white">
           <small className="text-lg font-light">{course.state}</small>
           <div className="flex justify-between items-center mb-2">
@@ -77,7 +77,7 @@ export default function CourseDetail({course, id}) {
             <button className="btn btn-ghost btn-sm" onClick={handleLike}>좋아요 {likes}</button>
           </div>
           <small className="mb-4 block">{course.nickname}</small>
-          <div className="flex gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-4">
             {
               course.tags.map((tag, index) => {
                 return <span key={index} className="badge badge-outline border-solid">#{tag}</span>;
@@ -102,7 +102,7 @@ export default function CourseDetail({course, id}) {
               course.coursePlaces.map((place, index) => {
                 return <li key={index} className="step">
                   <div className="flex gap-x-4 mb-4">
-                    <img className="rounded-xl self-start flex-shrink-0" src={place.image}/>
+                    <img className="rounded-xl self-start flex-shrink-0 w-16 h-16" src={place.image}/>
                     <div className="flex flex-col justify-center w-64 text-left">
                       <small className="text-sm">{place.state}</small>
                       <h4 className="text-lg font-semibold">{place.name}</h4>
