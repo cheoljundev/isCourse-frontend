@@ -1,7 +1,6 @@
-import {X} from "react-bootstrap-icons";
-import PlaceItem from "../../course/PlaceItem.jsx";
-import CourseItem from "../course/CourseItem.jsx";
-import DealItem from "./DealItem.jsx";
+import DealSalesItem from "./DealSalesItem.jsx";
+import {useRef} from "react";
+import DealSalesDetailModal from "./DealSalesDetailModal.jsx";
 export default function DealSalesManage() {
   const modal = useRef();
 
@@ -56,7 +55,3 @@ export default function DealSalesManage() {
     </>
 )
 }
-
-import DealSalesItem from "./DealSalesItem.jsx";
-import {useRef} from "react";
-import DealSalesDetailModal from "./DealSalesDetailModal.jsx";

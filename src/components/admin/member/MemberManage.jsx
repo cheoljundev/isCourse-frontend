@@ -1,7 +1,3 @@
-import {X} from "react-bootstrap-icons";
-import PlaceItem from "../../course/PlaceItem.jsx";
-import CourseItem from "../course/CourseItem.jsx";
-import DealItem from "../deal/DealItem.jsx";
 import MemberItem from "./MemberItem.jsx";
 import MemberManageModal from "./MemberManageModal.jsx";
 import {useRef} from "react";
